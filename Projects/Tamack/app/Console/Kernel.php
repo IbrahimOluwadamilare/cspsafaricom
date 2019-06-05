@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\DailyPaymentRun::class,
+        Commands\WeeklyPayment::class,
     ];
 
     /**
@@ -24,8 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('daily:pay')
+            // ->twiceDaily(10, 15);
+            ->dailyAt(06, 12, 18, 24);
+        $schedule->command( 'weekly:pay')
+            ->weeklyOn(1, '00:00');
     }
 
     /**

@@ -1,0 +1,15 @@
+{
+    "name": "demoBot",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "demoBot",
+            "endpoint": "http://localhost:52970/api/messages",
+            "appId": "",
+            "appPassword": "",
+            "id": "201"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0"
+}

@@ -52,7 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    // 'url' => env('APP_URL', 'http://192.99.217.37/tamak'),
+    'url' => env('APP_URL', 'http://tamakng.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -173,9 +175,16 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\v1\BusinessServiceProvider::class,
+        App\Providers\v1\DriverServiceProvider::class,
+        App\Providers\v1\DriverDirectionServiceProvider::class,
+        App\Providers\v1\RideRequestServiceProvider::class,
+        App\Providers\v1\TripServiceProvider::class,
+        App\Providers\v1\CardServiceProvider::class,
+        App\Providers\v1\RatingServiceProvider::class,
 
     ],
 
@@ -225,6 +234,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'HTML' => Collective\Html\HtmlFacade::class,
 
     ],
 

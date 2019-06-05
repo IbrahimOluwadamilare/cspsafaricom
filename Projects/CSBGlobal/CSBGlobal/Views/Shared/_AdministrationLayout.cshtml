@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MTN Provisioning Channel</title>
+
+    <environment include="Development">
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" />
+    </environment>
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    @*<link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css">*@
+    <link href="~/css/material-design-iconic-font.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="~/css/fancy-buttons.css" rel="stylesheet" type="text/css">
+    <link href="~/css/filter.css" rel="stylesheet" type="text/css">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/lightgallery.css" rel="stylesheet" type="text/css">
+    <link href="~/css/linea-icon.css" rel="stylesheet" type="text/css">
+    <link href="~/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css">
+    <link href="~/css/pe-icon-7-styles.css" rel="stylesheet" type="text/css">
+    <link href="~/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="~/css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="~/css/switchery.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/owl.theme.default.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/awesome-bootstrap-checkbox.css" rel="stylesheet" type="text/css">
+	<link href="~/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+	<link href="~/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="~/css/morris.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/style.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+
+
+    @*<div class="container">
+            <partial name="_CookieConsentPartial" />
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>*@
+
+    <!-- Preloader -->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!-- /Preloader -->
+    <div class="wrapper pimary-color-green open-setting-panel theme-6-active">
+
+        <div class="page-wrapper">
+            <div class="container-fluid pt-25">
+                @await Html.PartialAsync("_AdminstrationLayoutHeader")
+
+
+                @await Html.PartialAsync("_AdministrationLayoutAside")
+
+                @RenderBody()
+
+                @await Html.PartialAsync("_LayoutFooter")
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+
+
+    <environment include="Development">
+        <script src="~/js/jquery.min.js"></script>
+        @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"></script>
+    </environment>
+
+
+	<script src="~/js/jquery.dataTables.min.js"></script>
+	<script src="~/js/dataTables.buttons.min.js"></script>
+	<script src="~/js/dataTables.responsive.min.js"></script>
+	<script src="/js/responsive-datatable-data.js"></script>
+
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/jquery.simpleWeather.min.js"></script>
+    <script src="~/js/simpleweather-data.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/dropdown-bootstrap-extended.js"></script>
+    <script src="~/js/jquery.sparkline.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/js/raphael.min.js"></script>
+    <script src="~/js/morris.min.js"></script>
+    <script src="~/js/jquery.toast.min.js"></script>
+    <script src="~/js/switchery.min.js"></script>
+    <script src="~/js/init.js"></script>
+
+</body>
+</html>
