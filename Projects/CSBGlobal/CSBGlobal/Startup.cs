@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,14 @@ using Microsoft.Extensions.DependencyInjection;
 using CSBGlobal.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using CSBGlobal.Services;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+// using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using CSBGlobal.Helpers;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Text;
 
 namespace CSBGlobal
 {
@@ -38,6 +47,12 @@ namespace CSBGlobal
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "MTN OPCO Manager", Version = "v1" });
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -45,7 +60,40 @@ namespace CSBGlobal
             services.AddIdentity<ApplicationUser, IdentityRole>(options => { options.Stores.MaxLengthForKeys = 128; })
            .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
+            services.Configure<ApiBehaviorOptions>(options =>
+                        {
+                            options.SuppressModelStateInvalidFilter = true;
+                        });
 
+
+
+
+            // configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // // configure jwt authentication
+            // var appSettings = appSettingsSection.Get<AppSettings>();
+            // var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+
+            // services.AddAuthentication(x =>
+            // {
+            //     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            // })
+            // .AddJwtBearer(x =>
+            // {
+            //     x.RequireHttpsMetadata = false;
+            //     x.SaveToken = true;
+            //     x.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuerSigningKey = true,
+            //         IssuerSigningKey = new SymmetricSecurityKey(key),
+            //         ValidateIssuer = false,
+            //         ValidateAudience = false
+            //     };
+            // });
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -59,7 +107,11 @@ namespace CSBGlobal
                 options.SlidingExpiration = true;
             });
 
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, EmailService>();
+            services.AddTransient<ICSPapi, CspApiService>();
+            services.AddTransient<IMarketPlace, MarketService>();
+            services.AddTransient<ICustomerAuth, CustomerService>();
+            services.AddTransient<IDomain, DomainService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -91,6 +143,15 @@ namespace CSBGlobal
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MTN OPCO MANAGER V1");
+            });
+
+            app.Run(async (context) => await Task.Run(() => context.Response.Redirect("/swagger")));
         }
     }
 }

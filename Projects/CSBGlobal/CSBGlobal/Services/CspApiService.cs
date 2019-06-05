@@ -44,12 +44,6 @@ namespace CSBGlobal.Services
         }
 
 
-
-
-
-
-
-
         public async Task<UsersResponse> GetcustomerUsersAsync(string customerId)
         {
             var add = "https://csp-api-test.azurewebsites.net/api/v3/customer/getcustomerusers?selectedCustomerId={0}";

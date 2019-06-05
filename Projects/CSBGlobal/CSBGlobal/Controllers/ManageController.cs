@@ -16,7 +16,7 @@ using CSBGlobal.Services;
 
 namespace CSBGlobal.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
