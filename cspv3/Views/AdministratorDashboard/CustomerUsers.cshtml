@@ -1,0 +1,129 @@
+﻿
+@model X.PagedList.IPagedList<cspv3.Models.CspApiModels.UserResponse.Item>
+@{
+    ViewBag.Title = "Customer Users";
+    Layout = "_AdminDashboardLayout.cshtml";
+    var CustomerId = ViewBag.CustomerId as string;
+}
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@using Microsoft.AspNetCore.Http;
+
+
+<script type="text/javascript">
+    $function(){
+        $(".linkdisabled").click(function () {
+            return false;
+        }
+}
+
+</script>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@inject UserManager<ApplicationUser> userManager;
+
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            Customer Users  list
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a asp-action="Managecustomers" asp-controller="AdministratorDashBoard">Registered Customers</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Customer User List</li>
+            </ol>
+        </nav>
+    </div>
+  
+    <div class="row grid-margin col-lg-12">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Customer Records</h4>
+                    <h4 class="card-title text-md-right">
+                        <a class="btn btn-facebook" asp-action="CreateUser" asp-controller="AdministratorDashBoard" asp-route-customerid="@CustomerId" style="color:white">Create a new User</a>
+
+                    </h4>
+                    <div class="col-lg-12">
+                        <div class="col-xl-12 col-lg-12">
+                            <!-- Begin Header Overview-->
+                            <!--Begin::Main Portlet-->
+                            <div class="m-portlet m-portlet--mobile">
+
+                                <div class="m-portlet__body">
+                                    <div style="overflow-x:auto;">
+                                        <table class="table table-striped" style="overflow: auto;">
+                                            <thead class="blue-grey lighten-4">
+                                                <tr>
+                                                    <th>
+                                                        User Id
+                                                    </th>
+                                                    <th>
+                                                        First Name
+                                                    </th>
+                                                    <th>
+                                                        Last Name
+                                                    </th>
+                                                    <th>
+                                                        User Principal Name
+                                                    </th>
+                                                    <th>
+                                                        Display Name
+                                                    </th>
+
+                                                    <th>
+                                                        Licenses
+                                                    </th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Id)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.FirstName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.LastName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.UserPrincipalName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.DisplayName)
+                                                        </td>
+                                                        @*<td>
+                                                <a asp-action="ViewLicense" asp-route-id="@item.Id"> View License</a>
+                                                |
+                                                <a asp-action="AddLicense" asp-route-id="@item.Id"> Add License</a>  |
+                                                <a asp-action="DeleteUser" asp-route-UserId="@item.Id" asp-route-CustomerId="@CustomerId" > Delete User</a>
+                                            </td>*@
+
+
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <br />
+                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                    @Html.PagedListPager(Model, page => Url.Action("CustomerUsers",
+                                        new { page }))
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

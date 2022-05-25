@@ -1,0 +1,178 @@
+﻿
+@model List<cspv3.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Customers";
+    Layout = "_AdminLayout";
+    cspv3.Models.Customer customerdetails = (cspv3.Models.Customer)ViewBag.userdetails;
+}
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@using Microsoft.AspNetCore.Http;
+
+
+<script type="text/javascript">
+    $function(){
+        $(".linkdisabled").click(function () {
+            return false;
+        }
+}
+
+</script>
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+
+        <div class="page-header">
+
+
+            <h4 class="page-title"> All Customers </h4>
+
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">All Customers</li>
+                </ol>
+            </nav>
+
+        </div>
+
+        <div class="row grid-margin col-lg-12">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <br />
+
+                        <div class="panel panel-default card-view">
+                            <div class="panel-wrapper collapse in">
+
+                                <div class="panel-body">
+
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-hover display  pb-30">
+                                                <thead class="blue-grey lighten-4">
+                                                    <tr>
+                                                        <th>
+                                                            @Html.ActionLink("Customer ID", "ManageCustomers", new { sortOrder = ViewBag.CustomeridSortParm })
+                                                        </th>
+                                                        <th>
+                                                            First Name
+                                                        </th>
+                                                        <th>
+                                                            Last Name
+                                                        </th>
+                                                        <th>
+                                                            Level
+                                                        </th>
+                                                        <th>
+                                                            Phone No
+                                                        </th>
+                                                        <th>
+                                                            Email
+                                                        </th>
+                                                        <th>
+                                                            Registeration Date
+                                                        </th>
+                                                        <th>
+                                                            User Name
+                                                        </th>
+                                                        <th>
+                                                            User Address
+                                                        </th>
+                                                        <th>
+                                                            City
+                                                        </th>
+                                                        <th>
+                                                            State
+                                                        </th>
+                                                        <th>
+                                                            Company Name
+                                                        </th>
+                                                        <th>
+                                                            Company Address
+                                                        </th>
+                                                        <th>
+                                                            Country
+                                                        </th>
+
+                                                        @*<th>
+                                                            Action
+                                                        </th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Id)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.LastName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Level)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Email)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.RegisterationDate)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.UserName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.UserAddress)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.City)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.State)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.CompanyName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.CompanyAddress)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Country)
+                                                            </td>
+
+                                                            @*<td>
+                                                                    @Html.ActionLink("Delete Account", "DeleteAccount", new { id = item.Id })
+                                                                </td>*@
+                                                            @*<td>
+                                                                @Html.ActionLink("Details", "CustomerUsers", new { id = item.CspId })
+                                                            </td>*@
+                                                        </tr>
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>

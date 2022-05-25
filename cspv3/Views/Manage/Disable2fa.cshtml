@@ -1,0 +1,61 @@
+﻿
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        if (@User.IsInRole("Admin"))
+        {
+            ViewData["Title"] = "Disable two-factor authentication (2FA)";
+            ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
+           Layout = "_AdminLayout";
+        }
+        else
+        {
+            ViewData["Title"] = "Disable two-factor authentication (2FA)";
+            ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
+           Layout = "_CustomerLayout";
+        }
+
+    }
+}
+
+
+<div class="page-header">
+
+
+    <h4 class="page-title" style="color:darkgoldenrod">
+        @ViewData["Title"]
+    </h4>
+
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="twofactorauthentication" asp-controller="Manage">2FA</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                Disable 2FA
+            </li>
+        </ol>
+    </nav>
+
+</div>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>This action only disables 2FA.</strong>
+    </p>
+    <p>
+        Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key
+        used in an authenticator app you should <a asp-action="ResetAuthenticatorWarning">
+            reset your
+            authenticator keys.
+        </a>
+    </p>
+</div>
+
+<div>
+    <form asp-action="Disable2fa" method="post" class="form-group">
+        <button class="btn btn-facebook" type="submit">Disable 2FA</button>
+    </form>
+</div>

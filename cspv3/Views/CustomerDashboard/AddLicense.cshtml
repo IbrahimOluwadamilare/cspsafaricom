@@ -1,0 +1,73 @@
+﻿@model cspv3.ViewModels.AddLicenseViewModel
+@{
+    ViewBag.Title = "Add License";
+    Layout = "_CustomerLayout";
+    var subs = ViewBag.Subs as List<SelectListItem>;
+    var userid = ViewBag.UserId as string;
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject UserManager<ApplicationUser> userManager;
+
+
+
+
+    <div class="content-wrapper">
+        <div class="page-header">
+
+
+            <h4 class="page-title"> Add License  </h4>
+
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add License</li>
+                </ol>
+            </nav>
+
+        </div>
+
+        <div class="col-sm-8">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        @if (subs != null && subs.Count() > 0)
+                        {
+
+
+                        <!--begin::Form-->
+                        <form asp-controller="Customerdashboard" asp-action="AddLicense">
+                            <div class="m-portlet__body">
+
+                                <div class="form-group m-form__group">
+                                    <label for="licenses">
+                                        Available Licenses
+                                    </label>
+                                    <select class="form-control m-input" asp-for="SkuId" asp-items="@subs" id="licenses"></select>
+
+                                    <input asp-for="UserId" value="@userid" type="hidden" />
+                                </div>
+
+                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                    <div class="m-form__actions">
+                                        <button type="submit" value="submit" class="btn active" style="color:white; background-color:darkgoldenrod">
+                                            Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-facebook">
+                                            Cancel
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Form-->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

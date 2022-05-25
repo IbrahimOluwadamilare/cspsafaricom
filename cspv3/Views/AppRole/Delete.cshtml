@@ -1,0 +1,56 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_AdminLayout";
+
+}
+<!-- Row -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index">Role</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Delete  Role</li>
+    </ol>
+</nav>
+<br /><br />
+<h4>Delete Role </h4>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <hr />
+                                <dl class="dl-horizontal">
+                                    <dt style="color:black">
+                                       Role:
+                                    </dt>
+                                    <dd style="color:black">
+                                        @Html.DisplayFor(model => model)
+                                    </dd>
+                                </dl>
+                                <form asp-action="Delete">
+                                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                                    <br />
+
+                                </form>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>

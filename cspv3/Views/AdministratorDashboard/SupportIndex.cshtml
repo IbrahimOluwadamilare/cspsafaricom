@@ -1,0 +1,136 @@
+﻿
+@model List<cspv3.Models.Support>
+
+@using Microsoft.AspNetCore.Http;
+@using X.PagedList.Mvc.Core
+@{
+    ViewBag.Title = "Support";
+    Layout = "_AdminLayout";
+}
+
+
+@inject UserManager<ApplicationUser> userManager;
+
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+
+        <div class="page-header">
+
+
+            <h4 class="page-title" style="color: black"> Support Tickets </h4>
+
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">tickets</li>
+                </ol>
+            </nav>
+
+        </div>
+
+        <div class="row grid-margin col-lg-12">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <br />
+
+                        <div class="panel panel-default card-view">
+                            <div class="panel-wrapper collapse in">
+
+                                <div class="panel-body">
+
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-hover display  pb-30">
+                                                <thead class="blue-grey lighten-4">
+                                                    <tr>
+                                                        <th>
+                                                            Ticket ID
+                                                        </th>
+                                                        <th>
+                                                            Case Owner
+                                                        </th>
+                                                        <th>
+                                                            Subject
+                                                        </th>
+
+                                                        <th>
+                                                            Department
+                                                        </th>
+                                                        <th>
+                                                            Date Created
+                                                        </th>
+                                                        <th>
+                                                            Response
+                                                        </th>
+                                                        <th>
+                                                            Status
+                                                        </th>
+
+                                                        <th>
+                                                            Priority
+                                                        </th>
+                                                        <th>
+                                                            More Details
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Id)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.CaseOwner)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Subject)
+                                                            </td>
+
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Department)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.DateCreated)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Response)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Status)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Priority)
+                                                            </td>
+                                                            <td>
+                                                                @Html.ActionLink("View Details", "SupportDetails", new { id = item.Id })
+                                                            </td>
+
+                                                        </tr>
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br />
+                                        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                            @Html.PagedListPager(Model, page => Url.Action("SupportIndex",
+                                                new { page }))*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

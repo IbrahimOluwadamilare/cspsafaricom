@@ -1,0 +1,38 @@
+﻿<!-- Left Sidebar Menu -->
+<div class="fixed-sidebar-left">
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+        <li class="navigation-header">
+            <span></span>
+            <i class="zmdi zmdi-more"></i>
+        </li>
+
+
+        <li>
+            <a asp-controller="Partner" asp-action="Orders"><div class="pull-left"><i class="zmdi zmdi-comment-alert mr-20"></i><span class="right-nav-text">My Orders</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        <li>
+            <a data-toggle="collapse" data-target="#report_dr"><div class="pull-left"><i class="zmdi zmdi-account-box mr-20"></i><span class="right-nav-text">Reports</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="report_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="Report" asp-action="RevenueReport">Revenue</a>
+                    <a asp-controller="Report" asp-action="CustomerReport">Customer</a>
+                    <a asp-controller="Report" asp-action="SettlementsReport">Settlements</a>
+                    <a asp-controller="Report" asp-action="SalesReport">Sales</a>
+                    <a asp-controller="Report" asp-action="OrdersReport">Orders</a>
+                    <a asp-controller="Report" asp-action="RenewalsReport">Renewals</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a asp-controller="Partner" asp-action="Support"><div class="pull-left"><i class="zmdi zmdi-comment-alert mr-20"></i><span class="right-nav-text">Support</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+
+
+
+    </ul>
+</div>
+<!-- /Left Sidebar Menu -->

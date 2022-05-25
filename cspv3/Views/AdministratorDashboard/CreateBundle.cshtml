@@ -1,0 +1,198 @@
+﻿@model cspv3.ViewModels.BundlesViewModel
+@{
+    ViewData["Title"] = "Create Bundle";
+    Layout = "_AdminLayout";
+
+}
+
+
+
+<!-- Row -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="AdministratorDashboard" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="AdministratorDashboard" asp-action="ManageBundles">Manage Bundle</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Bundle</li>
+    </ol>
+</nav>
+<br /><br />
+<h4>Create New Bundle </h4>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            @*<form action="CreateBundle" method="post">*@
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Bundle.BundleName" class="control-label"></label>
+                    <input id="bundlename" class="form-control" />
+                    <span asp-validation-for="Bundle.BundleName" class="text-danger"></span>
+                </div>
+
+                <table id="tblBundle" class="table" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <td>Category Name</td>
+                            <td>Price</td>
+                            <td>CSP id</td>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                              
+                                <input asp-for="BundleCategory.CategoryName" class="form-control" id="categoryName" />
+                            </td>
+                            <td>
+                               <input asp-for="BundleCategory.Price" class="form-control" id="price" />
+                            </td>
+                            <td>
+                                <input asp-for="BundleCategory.CspId" class="form-control" id="cspId" />
+                            </td>
+                            <td>
+                               
+                                <a class="btn btn-primary" id="btnAdd"><i class="zmdi zmdi-plus"></i></a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+               
+                <div class="form-group">
+                    <button class="btn btn-primary" id="createbundle">Create Bundle</button>
+
+
+                </div>
+
+                <br />
+            @*</form>*@
+        </div>
+    </div>
+    <br />
+
+</div>
+
+<script>
+
+    //$(document).ready(function(){
+    //    var bundlename = $("#bundlename").val();
+    //    console.log(bundlename, bundles);
+        
+    //});
+
+     
+
+    $('#createbundle').click(function () {
+        var BundleName = $("#bundlename").val();
+        var BundleCategory = new Array();
+        var data = new Array();
+         $("#tblBundle TBODY TR").each(function () {
+            var row = $(this);
+             var bundle = [];
+            bundle.CategoryName = row.find("TD").eq(0).html();
+            bundle.Price = row.find("TD").eq(1).html();
+            bundle.CspId = row.find("TD").eq(1).html();
+            BundleCategory.push(bundle);
+        });
+            console.log(BundleName, BundleCategory);
+        data.BundleCategory = BundleCategory;
+        data.BundleName = BundleName;
+
+        console.log(data);
+        //ajax call
+        $.ajax({
+            type: "POST",
+            url: "/AdministratorDashboard/CreateBundle",
+            traditional: true,
+
+            dataType: "json",
+            data: { datasource: data },
+
+                        success: function (response) {
+
+                            if (response.isSuccess) {
+                                window.location = response.redirecturl;
+                            }
+                            else {
+                                alert(response.message);
+
+                            }
+                        },
+                        error: function (response) {
+                            alert("this is an error" + response);
+                        }
+                    });
+
+
+
+
+
+    });
+
+     $("body").on("click", "#btnAdd", function () {
+        //Reference the Name and Country TextBoxes.
+        var categoryName = $("#categoryName");
+        var price = $("#price");
+        var cspId = $("#cspId");
+
+        //Get the reference of the Table's TBODY element.
+        var tBody = $("#tblBundle > TBODY")[0];
+
+        //Add Row.
+        var row = tBody.insertRow(-1);
+
+        //Add Name cell.
+        var cell = $(row.insertCell(-1));
+        cell.html(categoryName.val());
+
+        //Add Country cell.
+        cell = $(row.insertCell(-1));
+        cell.html(price.val());
+
+
+        //Add Countr cell.
+
+        cell = $(row.insertCell(-1));
+        cell.html(cspId.val());
+
+
+
+
+        //Add Button cell.
+        cell = $(row.insertCell(-1));
+        var btnRemove = $("<a />");
+        btnRemove.attr("class", "btn btn-primary");
+        btnRemove.wrapInner($("<i class='zmdi zmdi-minus'></i>"));
+        btnRemove.attr("onclick", "Remove(this);");
+        btnRemove.val("Remove");
+        cell.append(btnRemove);
+
+        //Clear the TextBoxes.
+        categoryName.val("");
+        price.val("");
+         cspId.val("");
+
+          
+     });
+    function Remove(button) {
+       
+        var row = $(button).closest("TR");
+        var name = $("TD", row).eq(0).html();
+        
+        var table = $("#tblBundle")[0];
+
+       
+        table.deleteRow(row[0].rowIndex);
+    };
+</script>

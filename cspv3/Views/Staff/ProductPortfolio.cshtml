@@ -1,0 +1,121 @@
+﻿@model IEnumerable<cspv3.Models.ProductOffering>
+@{
+    ViewData["Title"] = "Staff Dashboard";
+    Layout = "_StaffLayout";
+}
+
+
+<h4>Product Portfolio</h4>
+<div class="page-container">
+    <!-- Header START -->
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+
+                        <li><a>Configuration</a></li>
+                        <li><a class="active">Product Portfolio</a></li>
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="panel panel-default card-view">
+                    <div class="panel-wrapper collapse in">
+                        <div class="panel-body">
+
+                            <br />
+
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body">
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <table id="myTable1" class="table table-hover display  pb-30">
+                                                <thead>
+
+
+                                                    <tr>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Name)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Description)
+                                                        </th>
+
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.category)
+                                                        </th>
+
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.WragbyPrice)
+                                                        </th>
+
+                                                        <th>
+                                                            ACTIONS
+                                                        </th>
+                                                    </tr>
+
+
+
+                                                </thead>
+                                                <tfoot>
+
+                                                </tfoot>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Name)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Description)
+                                                            </td>
+
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.category)
+                                                            </td>
+                                                            <td>
+
+                                                                ₦  @Html.DisplayFor(modelItem => item.WragbyPrice)
+                                                            </td>
+                                                            <td>
+                                                                @*<a asp-action="Edit" asp-route-id="@item.cspID"><i class="ti-pencil text-dark" rel="tooltip" title="Edit"></i></a> |*@
+
+                                                                <a asp-action="Details" asp-route-id="@item.cspID"><i class="ti-layers text-warning" rel="tooltip" title="Details"></i></a>
+
+                                                                <div>
+
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,102 @@
+﻿@model cspv3.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Staff Dashboard";
+    Layout = "_StaffLayout";
+}
+
+<div class="col-sm-6">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h6 class="panel-title txt-dark">User Information</h6>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="form-wrap">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label " for="state-success">User Name</label>
+                            <div class="col-md-6">
+                                <p class="mrg-top-10 text-dark">
+                                    <h5 style="color:slategrey">
+                                        @Html.DisplayFor(model => model.UserName)
+                                    </h5>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label " for="state-warning">FullName</label>
+                            <div class="col-md-6">
+                                Tolu Agabielesin
+                                @*@{
+                                    var name = Model.LastName + " " + Model.FirstName;
+                                }
+                                @name*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label " for="state-danger">Phone Number</label>
+                            <div class="col-md-6">
+                                090456778
+                                @*@{
+                                    var phone = Model.PhoneNumber;
+                                }
+                                @phone*@
+                            </div>
+                        </div>
+                      <div class="form-group">
+                            <label class="col-sm-3 control-label ">Email </label>
+                            <div class="col-sm-6">
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Address</label>
+                            <div class="col-sm-6">
+                                Olubunmi Rotimi
+                                @*@{
+                                    var address = Model.UserAddress;
+                                }
+                                @address*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Company Name</label>
+                            <div class="col-sm-6">
+                                Wragby Business Solutions
+                                @*@{
+                                    var CompName = Model.CompanyName.Trim();
+                                }
+                                @CompName*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Company Address</label>
+                            <div class="col-sm-6">
+                                Olubunmi Rotimi
+                                @*@{
+            var CompAdd = Model.CompanyAddress.Trim();
+        }
+        @CompAdd*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Registration Date</label>
+                            <div class="col-sm-6">
+                                <p>
+                                    
+                                    @*@{
+                                        var regdate = Model.RegisterationDate.ToLongDateString();
+                                    }
+                                    @regdate*@
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+﻿<!-- Left Sidebar Menu -->
+<div class="fixed-sidebar-left">
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+        <li class="navigation-header">
+            <span></span>
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a asp-controller="AdministratorDashboard" asp-action="Index"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        <li>
+            <a asp-controller="AdministratorDashboard" asp-action="EditProfile"><div class="pull-left"><i class="zmdi zmdi-account-o mr-20"></i><span class="right-nav-text">Edit Profile</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        <li>
+            <a asp-controller="Home" asp-action="BundlesPage"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Webstore</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#product_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Products</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="product_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="AdministratorDashboard" asp-action="ManageProducts">Manage Products</a>
+                </li>
+                <li>
+                    <a asp-controller="AdministratorDashboard" asp-action="ManageBundles">Manage Bundles</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#manageorder_dr"><div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span class="right-nav-text">Manage Orders</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+
+            <ul id="manageorder_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="AdministratorDashboard" asp-action="AllOrders">All Orders</a>
+                </li>
+                <li>
+                    <a asp-controller="AdministratorDashboard" asp-action="FulfilledOrders">Fulfilled Orders</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a data-toggle="collapse" data-target="#manageuser_dr"><div class="pull-left"><i class="zmdi zmdi-face mr-20"></i><span class="right-nav-text">Manage Users</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="manageuser_dr" class="collapse collapse-level-1">
+                @*<li>
+                    <a data-toggle="collapse" data-target="#users_dr"><div class="pull-left"><span class="right-nav-text">Users</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+                    <ul id="users_dr" class="collapse collapse-level-1">
+                        <li>
+                            <a href="index3.html">Assign Licence</a>
+                            <a href="index3.html">Suspend Suscription</a>
+                        </li>
+                    </ul>
+                </li>*@
+                <li>
+                    <a asp-action="ManageCustomers" asp-controller="AdministratorDashboard">Registered Users</a>
+                </li>
+
+
+            </ul>
+        </li>
+
+        <li>
+            <a data-toggle="collapse" data-target="#managerole_dr"><div class="pull-left"><i class="zmdi zmdi-face mr-20"></i><span class="right-nav-text">Role Management</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="managerole_dr" class="collapse collapse-level-1">
+
+                <li>
+                    <a asp-action="Index" asp-controller="User">Users</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="AppRole">Roles</a>
+                </li>
+
+
+            </ul>
+        </li>
+
+
+        <li>
+            <a data-toggle="collapse" data-target="#report_dr"><div class="pull-left"><i class="zmdi zmdi-account-box mr-20"></i><span class="right-nav-text">Reports</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="report_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="Report" asp-action="RevenueReport">Revenue</a>
+                    <a asp-controller="Report" asp-action="CustomerReport">Customer</a>
+                    <a asp-controller="Report" asp-action="SettlementsReport">Settlements</a>
+                    <a asp-controller="Report" asp-action="SalesReport">Sales</a>
+                    <a asp-controller="Report" asp-action="OrdersReport">Orders</a>
+                    <a asp-controller="Report" asp-action="RenewalsReport">Renewals</a>
+                </li>
+            </ul>
+        </li>
+       
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#billings_dr"><div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span class="right-nav-text">Billings</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+
+            <ul id="billings_dr" class="collapse collapse-level-1">
+                <li>
+                    <a href="product.html">Invoices</a>
+                </li>
+                <li>
+                    <a href="e-commerce.html">Billing Reports</a>
+                </li>
+                <li>
+                    <a href="product.html">Activate coupons</a>
+                </li>
+                <li>
+                    <a href="product.html">Price List of Products</a>
+                </li>
+                <li>
+                    <a href="product.html">Sales Report</a>
+                </li>
+            </ul>
+        </li>
+
+        @*<li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#promos_dr"><div class="pull-left"><i class="zmdi zmdi-assignment mr-20"></i><span class="right-nav-text">Manage Promotions</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>*@
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#support_dr"><div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span class="right-nav-text">Support</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+
+            <ul id="support_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="AdministratorDashboard" asp-action="SupportIndex">Support Requests</a>
+                    <a asp-controller="AdministratorDashboard" asp-action="HelpRequests">Help Requests</a>                </li>
+
+            </ul>
+        </li>
+
+
+    </ul>
+</div>
+<!-- /Left Sidebar Menu -->

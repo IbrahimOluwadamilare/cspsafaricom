@@ -1,0 +1,56 @@
+﻿@model cspv3.ViewModels.ApplicationRoleViewModel
+@{
+    ViewData["Title"] = "EditRole";
+    Layout = "_AdminLayout";
+
+}
+
+<!-- Row -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index">Role</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit  Role</li>
+    </ol>
+</nav>
+<br /><br />
+<h4>Edit Role </h4>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+               
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="EditRole">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="RoleName" class="control-label"></label>
+                            <input asp-for="RoleName" class="form-control" />
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br />
+            @*<div>
+                <a class="btn btn-success" asp-action="Index">Back to Roles Dashboard</a>
+            </div>*@
+        </div>
+    </div>
+</div>

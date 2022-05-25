@@ -1,0 +1,339 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    var usertype = (UserCategories)ViewBag.UserType;
+}
+
+<section id="page-title" data-parallax-image="../img/5.jpg">
+    <div class="parallax-container img-loaded" data-velocity="-.090" style="background: url(&quot;/img/5.jpg&quot;) 0px;"></div>
+    <div class="container">
+        <div class="page-title">
+            <h1>Register</h1>
+        </div>
+        <div class="breadcrumb">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Pages</a>
+                </li>
+                <li class="active">
+                    <a href="#">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 center no-padding">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Register New Individual Account</h3>
+                    <p></p>
+                </div>
+
+
+                <div class="col-lg-6 form-group">
+                    <label> Phone Number</label>
+
+                    <span>
+
+                        <input  class="form-control" asp-for="PhoneNumber">
+                    </span>
+
+                    <br />
+                    <button id="validate" class="btn btn-primary">validate</button>
+
+                    <div id="queryresponse">
+
+                    </div>
+
+                </div>
+                <form asp-action="MtnRegister">
+                    <input type="hidden" id="pphone" name="pphone">
+                    <input type="hidden" id="usertype" name="usertype" value="@usertype" >
+
+                    <div style="display:none" id="frmcomp">
+                        <div class="col-lg-6 form-group">
+                            <label>Password</label>
+                            <input class="form-control" id="MPassword">
+                            @*<span asp-validation-for="MPassword" class="text-danger"></span>*@
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label>Confirm Password</label>
+                            <input class="form-control" id="MConfirmPassword">
+                            @*<span asp-validation-for="MConfirmPassword" class="text-danger"></span>*@
+                        </div>
+
+                        <div class="col-lg-12 form-group">
+                            <button class="btn"  type="submit">Complete Registration </button>
+
+                        </div>
+
+                    </div>
+                </form>
+
+
+                <div style="display:none; position:center" id="frmothers">
+                    <form asp-action="IndividualReg" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" id="mphone" name="mphone">
+                        <input type="hidden" id="usertype" name="usertype" value="@usertype">
+
+                        <div class="col-lg-6 form-group">
+                            <label>First Name</label>
+                            <input class="form-control" asp-for="FirstName">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" asp-for="LastName">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label>Password</label>
+                            <input class="form-control" asp-for="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label>Confirm Password</label>
+                            <input class="form-control" asp-for="ConfirmPassword">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-lg-12 form-group">
+                            <label>Email</label>
+                            <input class="form-control" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-lg-12 form-group">
+                            <label>User Address</label>
+                            <input class="form-control" asp-for="UserAddress">
+                            <span asp-validation-for="UserAddress" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-lg-6 form-group">
+                            <label>Company Name</label>
+                            <input class="form-control" asp-for="CompanyName">
+                            <span asp-validation-for="CompanyName" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <label>Company Address</label>
+                            <input class="form-control" asp-for="CompanyAddress">
+                            <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                        </div>
+
+
+
+
+                        <div class="col-lg-12 form-group">
+                            <label>Country</label>
+                            <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
+                            <span asp-validation-for="Country" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label>State / County</label>
+                            <select id="region" class="form-control" asp-for="State" required><option value=@null>-- State --</option></select>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label>City</label>
+                            <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-lg-6 form-group">
+                            <label>Postcode / Zip</label>
+                            <input class="form-control" asp-for="PostCode" required type="text" placeholder="Postal Code ( 123456 )" />
+                            <span asp-validation-for="PostCode" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <button class="btn" type="submit">Register New Account </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+         $("#PhoneNumber").change(function(){
+             $("#pphone").val($("#PhoneNumber").val());
+             $("#mphone").val($("#PhoneNumber").val());
+
+
+             var phone = $("#pphone").val();
+
+             console.log(phone);
+             });
+
+        $("#validate").click(function () {
+            var phonenumber = $('#PhoneNumber').val();
+
+            console.log(phonenumber);
+
+            $('#queryresponse').html('<img src="/img/gif/loader.gif">');
+
+
+            $.ajax({
+                url: '/account/PhonenumberCheck?phone=' + phonenumber,
+
+                type: 'Get',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var result = data;
+
+                    if (result == true) {
+
+                        setTimeout(function () {
+                            $('#queryresponse').empty().removeClass().addClass('text-success').append('You are an MTN Subscriber, enter your password to complete registration');
+
+                        });
+                        $('#frmothers').hide();
+
+                        $('#frmcomp').show();
+
+                    } else {
+                        $('#queryresponse').empty().removeClass().addClass('text-danger').append('You are not an MTN Subscriber, fill the form to complete registration');
+                        $('#frmcomp').hide();
+
+                        $('#frmothers').show();
+                    }
+
+                },
+
+                failure: function (data) {
+                    console.log(data.responseText);
+                },
+
+                error: function (data) {
+                    console.log(data.responseText);
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+
+
+
+  //-------------------------------SELECT CASCADING-------------------------//
+  var selectedCountry = selectedRegion = selectedCity = countryCode = "";
+  // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
+        var BATTUTA_KEY = "00000000000000000000000000000000";
+  // Populate country select box from battuta API
+  url =
+    "https://geo-battuta.net/api/country/all/?key=" +
+    BATTUTA_KEY +
+    "&callback=?";
+  // EXTRACT JSON DATA.
+  $.getJSON(url, function(data) {
+    $.each(data, function(index, value) {
+      // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
+      $("#country").append(
+        '<option id="'+ value.code +'" value="' + value.code + '">' + value.name + "</option>"
+      );
+    });
+  });
+  // Country selected --> update region list .
+  $("#country").change(function() {
+    selectedCountry = this.options[this.selectedIndex].text;
+    countryCode = $(this).children(":selected").attr("id");
+    url =
+      "https://geo-battuta.net/api/region/" +
+      countryCode +
+      "/all/?key=" +
+      BATTUTA_KEY +
+      "&callback=?";
+    $.getJSON(url, function(data) {
+      $("#region option").remove();
+      $.each(data, function(index, value) {
+        // APPEND OR INSERT DATA TO SELECT ELEMENT.
+        $("#region").append(
+          '<option value="' + value.region + '">' + value.region + "</option>"
+        );
+      });
+    });
+  });
+  // Region selected --> updated city list
+  $("#region").on("change", function() {
+    selectedRegion = this.options[this.selectedIndex].text;
+    // Populate country select box from battuta API
+    region = $("#region").val();
+    url =
+      "https://geo-battuta.net/api/city/" +
+      countryCode +
+      "/search/?region=" +
+      region +
+      "&key=" +
+      BATTUTA_KEY +
+      "&callback=?";
+    $.getJSON(url, function(data) {
+      $("#city option").remove();
+      $.each(data, function(index, value) {
+        // APPEND OR INSERT DATA TO SELECT ELEMENT.
+        $("#city").append(
+          '<option value="' + value.city + '">' + value.city + "</option>"
+        );
+      });
+    });
+  });
+  // city selected --> update location string
+  $("#city").on("change", function() {
+    selectedCity = this.options[this.selectedIndex].text;
+    $("#location").html(
+      "Locatation: Country: " +
+        selectedCountry +
+        ", Region: " +
+        selectedRegion +
+        ", City: " +
+        selectedCity
+    );
+        });
+
+
+
+
+
+});
+// process form
+function processForm() {
+    var username = password = country = region = city = '';
+    username = $('#username').val();
+    password = $('#password').val();
+    country = $('#country').val();
+    region = $('#region').val();
+    city = $('#city').val();
+    if (username != '' && password != '' && country != '' && region != '' && city != '') {
+        $("#location").html(
+      "Username: " + username +
+      " /Password: " + password +
+      " /Locatation: Country: " +
+        country +
+        ", Region: " +
+        region +
+        ", City: " +
+        city
+    );
+    } else {
+        $("#location").html('Complete Form 1st');
+        return false;
+    }
+    }
+
+</script>

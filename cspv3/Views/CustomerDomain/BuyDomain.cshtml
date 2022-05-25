@@ -1,0 +1,335 @@
+﻿@{
+    ViewData["Title"] = "Buy Domain";
+}
+<!-- page- title area start -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div style="background-image: url(/exzo/img/background-26.jpg); height:200px;  background-position: center;  background-size:100%; background-repeat:no-repeat;">
+    <div class="container">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var domainPrice;
+        var domainName;
+
+        $("#checkdomain").click(function () {
+            $('#queryresponse').html('<img src="/img/gif/loader.gif">');
+
+            var domain = $('#checkdomainvalue').val();
+
+
+             $.ajax({
+                url: '@Url.Action("CheckDomainAvailability", "CustomerDomain")',
+                method: 'GET',
+                 data: {
+                     domain: domain
+                 },
+                success: function (returndata) {
+                    console.log(returndata);
+
+
+                    if (returndata == null) {
+
+                        setTimeout(function () {
+                            $('#queryresponse').empty().removeClass().addClass('text-danger').append('An error occured');
+                        });
+
+
+                    }
+
+                    if (returndata.available) {
+
+                        setTimeout(function () {
+                            $('#queryresponse').empty().removeClass().addClass('text-success').append('Domain Name is Available, Please click on the Details link to view your Product summary');
+                        });
+
+                        $('#pname').html(returndata.domain);
+
+                        var p = returndata.price / 1000000 * 365;
+
+                        $('#price').html(p);
+
+                        domainName = returndata.domain;
+                        domainPrice = returndata.price;
+
+
+                        $('#chsummary').show();
+
+                    }
+                    else {
+                        $('#queryresponse').empty().removeClass().addClass('text-danger').append('Opps Domain Name not Available please try again');
+                        $('#chsummary').hide();
+                    }
+
+
+                }
+
+            });
+        });
+
+            $("#chsummary").click(function () {
+                $('#checkdomainvalue').attr("disabled", true);
+                $('#checkdomain').attr("disabled", true);
+                $('#summary').show();
+
+            });
+
+
+            $("#submitModel").click(function () {
+
+
+                $('#domainname').val(domainName);
+                $('#domainprice').val(domainPrice);
+
+                console.log($('#domainname').val());
+                console.log($('#domainprice').val());
+
+                @*$.ajax({
+                    url: '@Url.Action("DomainOrder","CustomerDomain")',
+                    method: 'POST',
+                    data: {
+                        domainName: domainName,
+                        domainPrice: domainPrice,
+                    },
+                    success: function (returndata) {
+                        console.log(returndata);
+                    }
+
+                });*@
+        });
+    });
+
+
+
+
+</script>
+
+
+
+@*<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-xs-b50 col-md-b0" id="domainPartition">
+            <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+
+            <h4 class="h4 col-xs-b25">Check Domain Availability</h4>
+
+            <div>
+
+                <em>
+
+                    Enter a domain name you like and check if it is available.
+                </em>
+            </div>
+
+            <div class="empty-space col-xs-b20"></div>
+
+            <label>
+                Domain name
+                <span class="required">*</span>
+            </label>
+            <div class="empty-space col-xs-b20"></div>
+
+            <input type="text" placeholder="" style="        width: 60%" id="checkdomainvalue" class="simple-input" required />
+
+
+            <span style="display: inline-block"> </span><br />
+            <div class="empty-space col-xs-b20"></div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <br /><br />
+
+    </div>
+    <div id="queryresponse">
+    </div><br /><br />
+    <div class="buttons-wrapper">
+        <a class="button size-2 style-2" id="checkdomain">
+            <span class="button-wrapper">
+                <span class="icon"><img src="~/exzo/img/icon-2.png" alt=""></span>
+                <span class="text"> Check Availability</span>
+            </span>
+        </a>
+        <a class="button size-2 style-3" id="chsummary" style="        display: none;">
+            <span class="button-wrapper">
+                <span class="icon"><img src="~/exzo/img/icon-4.png" alt=""></span>
+                <span class="text"> Details </span>
+            </span>
+        </a>
+    </div>
+    <div class="empty-space col-xs-b20"></div>
+
+
+
+
+    <div class="col-md-6" id="summary" style="position: center;
+        display: none;">
+        <form asp-action="DomainOrder" asp-controller="CustomerDomain">
+            <h4 class="h4 col-xs-b25">Domain Summary</h4>
+
+            <div class="cart-entry clearfix">
+           
+            <div class="cart-entry-description">
+
+                <input type="hidden" id="domainname" name="domainname" /> <input type="hidden" id="domainprice" name="domainprice" />
+
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="product-name">Domain Name</th>
+                            <th class="product-total">Annual Cost(N)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cart_item">
+                            <td class="product-name">
+
+                                <div id="pname">
+                                </div>
+                            </td>
+                            <td class="product-total" id="price">
+                                <div id="price">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="payment-method">
+                <div class="order-button-payment">
+                    <input type="submit" value="Proceed" id="submitModel" />
+                </div>
+            </div>
+                </div>
+        </form>
+    </div>
+</div>*@
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="empty-space col-xs-b20"></div>
+
+        <div class="col-md-6 col-xs-b50 col-md-b0" id="domainPartition">
+            <h4 class="h4 col-xs-b25">Check Domain Availability</h4>
+
+            <div>
+
+                <em>
+
+                    Enter a domain name you like and check if it is available.
+                </em>
+            </div>
+
+            <div class="empty-space col-xs-b20"></div>
+
+            <label>
+                Domain name
+                <span class="required">*</span>
+            </label>
+            <div class="empty-space col-xs-b20"></div>
+
+            <input type="text" placeholder="" style="        width: 60%" id="checkdomainvalue" class="simple-input" required />
+
+
+            <span style="display: inline-block"> </span><br />
+            <div class="empty-space col-xs-b20"></div>
+
+
+
+            <div id="queryresponse">
+            </div><br />
+            <div class="order-details-entry">
+
+
+                <div class="buttons-wrapper">
+                    <a class="button size-2 style-2"  id="checkdomain">
+                        <span class="button-wrapper">
+                            <span class="icon"><img src="~/exzo/img/icon-2.png" alt=""></span>
+                            <span class="text"> Check Availability</span>
+                        </span>
+                    </a>
+                    <a class="button size-2 style-3"  id="chsummary" style="        display: none;">
+                        <span class="button-wrapper">
+                            <span class="icon"><img src="~/exzo/img/icon-4.png" alt=""></span>
+                            <span class="text">Order Summary</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6" id="summary" style="        position: center;
+        display: none;">
+            <form asp-action="DomainOrder" asp-controller="CustomerDomain">
+                <h4 class="h4 col-xs-b25">Domain Summary</h4>
+
+                <div class="cart-entry clearfix">
+
+                    <div class="cart-entry-description">
+
+                        <input type="hidden" id="domainname" name="domainname" /> <input type="hidden" id="domainprice" name="domainprice" />
+
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="product-name">Domain Name</th>
+                                    <th class="product-total">Annual Cost(N)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cart_item">
+                                    <td class="product-name">
+
+                                        <div id="pname">
+                                        </div>
+                                    </td>
+                                    <td class="product-total" id="price">
+                                        <div id="price">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+
+                <div class="empty-space col-xs-b50"></div>
+               
+                <div class="empty-space col-xs-b10"></div>
+
+                <div class="empty-space col-xs-b30"></div>
+                <div class="button block size-2 style-3">
+                    <span class="button-wrapper">
+                        <span class="icon"><img src="~/exzo/img/icon-4.png" alt=""></span>
+                        <span class="text">Proceed</span>
+                    </span>
+                    <input type="submit" id="submitModel" />
+                </div>
+                <div class="empty-space col-xs-b10"></div>
+            </form>
+
+        </div>
+    </div>
+</div>

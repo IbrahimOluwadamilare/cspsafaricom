@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "FulFill Invoice Order";
+    Layout = "_AdminDashboardLayout.cshtml";
+    cspv3.Models.Customer customerdetails = (cspv3.Models.Customer)ViewBag.userdetails;
+}
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            Order Fulfillment
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Order Fulfilment</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row grid-margin col-lg-12">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+
+                    <div class="m-portlet__body">
+                        <center><h3>Order FulFilled Successfully</h3></center><br /><br />
+                        <a class="btn btn-facebook" href="@Url.Action("ManageOrders","AdministratorDashboard")"><< Back to Order List</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

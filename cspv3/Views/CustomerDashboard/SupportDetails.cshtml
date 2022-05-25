@@ -1,0 +1,128 @@
+﻿@model cspv3.Models.Support
+
+@{
+    ViewData["Title"] = "SupportDetails";
+    Layout = "_CustomerLayout";
+
+}
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+
+        <div class="page-header">
+
+
+            <h4 class="page-title"> Support Details </h4>
+
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Support Details</li>
+                </ol>
+            </nav>
+
+        </div>
+
+        <div class="row grid-margin col-lg-12">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-md-right">
+
+
+                        </h6>
+                        <br />
+
+                        <div class="panel panel-default card-view">
+                            <div class="panel-wrapper collapse in">
+
+                                <div class="panel-body">
+
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-hover display  pb-30">
+                                                <thead class="blue-grey lighten-4">
+                                                    <tr>
+                                                        <th>
+                                                            Date Created
+                                                        </th>
+
+                                                        <th>
+                                                            Date Resolved
+                                                        </th>
+                                                        <th>
+                                                            Subject
+                                                        </th>
+                                                        <th>
+                                                            Priority
+                                                        </th>
+                                                        <th>
+                                                            Department
+                                                        </th>
+                                                        <th>
+                                                            Response
+                                                        </th>
+                                                        <th>
+                                                            Status
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+
+                                                    <tr>
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.DateCreated)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.DateResolved)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.Subject)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.Priority)
+
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.Department)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.Response)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => Model.Status)
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+

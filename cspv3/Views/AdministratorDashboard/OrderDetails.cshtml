@@ -1,0 +1,89 @@
+﻿@model cspv3.ViewModels.OrderDetailsViewModel
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewBag.Title = "Order Details";
+    Layout = "_AdminLayout";
+
+}
+
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+
+
+        <h4 class="page-title">  Order Details </h4>
+
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a asp-controller="CustomerDashboard" asp-action="Orders">Orders List</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Order Details</li>
+            </ol>
+        </nav>
+
+    </div>
+    <div class="row grid-margin col-lg-12">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <br />
+
+                    <div class="panel panel-default card-view">
+                        <div class="panel-wrapper collapse in">
+
+                            <div class="panel-body">
+
+                                <div class="table-wrap">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" style="overflow: auto;">
+                                            <thead class="blue-grey lighten-4">
+                                                <tr>
+                                                    <th>
+                                                        Product Name
+                                                    </th>
+
+                                                    <th>
+                                                        Quantity
+                                                    </th>
+                                                    <th>
+                                                        Unit Price
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.OrderDetails)
+                                                {
+
+                                                    var productdetails = Model.Products.FirstOrDefault(d => d.cspID == item.ProductId);
+                                                    <tr>
+                                                        <td>
+                                                            @productdetails.Name;
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Quantity)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,100 @@
+﻿@model cspv3.Models.Support
+@{
+    ViewBag.Title = "Support Details";
+    Layout = "_AdminLayout";
+
+}
+@using Microsoft.AspNetCore.Http;
+
+
+
+
+<!-- Row -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Products</li>
+    </ol>
+</nav>
+<br /><br />
+<h4>Manage Products </h4>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Product Upload</h6>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+
+           
+                            <form method="post">
+                                <input asp-for="Id" type="hidden" />
+                                <input asp-for="DateResolved" type="hidden" />
+                                <input asp-for="DateCreated" type="hidden" />
+                                <input asp-for="CaseOwner" type="hidden" />
+
+
+                                <div class="form-group m-form__group">
+                                    <label for="dept">
+                                        Department
+                                    </label>
+                                    <input asp-for="Department" class="form-control m-input" id="dept" disabled />
+
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="priority">
+                                        Priority
+                                    </label>
+                                    <input asp-for="Priority" class="form-control m-input" id="priority" disabled />
+
+
+
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="subject">
+                                        Subject
+                                    </label>
+                                    <input asp-for="Subject" type="text" class="form-control m-input" id="subject" disabled>
+
+                                </div>
+
+
+
+                                <div class="form-group m-form__group">
+                                    <label for="desc">
+                                        Response
+                                    </label>
+                                    <textarea asp-for="Message" class="form-control m-input" id="desc" rows="6" disabled></textarea>
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="desc">
+                                        Description
+                                    </label>
+                                    <textarea asp-for="Response" class="form-control m-input" id="desc" rows="6"></textarea>
+                                </div>
+
+                                <div class="form-group m-form__group">
+                                    <label for="status">
+                                        Status
+                                    </label>
+                                    <select asp-for="Status" class="form-control m-input" asp-items="@Html.GetEnumSelectList<StatusType>()" id="status"></select>
+
+                                </div>
+                                <button type="submit" asp-controller="AdministratorDashboard" asp-action="UpdateStatus" class="btn btn-primary">
+                                    Update Status
+                                </button>
+
+                            </form>
+            <br/>
+                        </div>
+
+                    </div>
+                </div>
+            

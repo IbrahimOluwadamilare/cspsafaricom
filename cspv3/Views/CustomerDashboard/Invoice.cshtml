@@ -1,0 +1,129 @@
+﻿
+@model cspv3.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "_CustomerLayout";
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+
+<h4>Invoice</h4>
+<div class="page-container">
+    <!-- Header START -->
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+
+                        <li><a>Home</a></li>
+                        <li><a class="active">Invoice</a></li>
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container-fluid">
+                                        <h3 class="text-right my-5">Invoice&nbsp;</h3>
+                                        <hr>
+                                    </div>
+                                    <div class="container-fluid d-flex justify-content-between">
+                                        <div class="col-lg-3 pl-0">
+                                            <p class="mt-5 mb-2"><b>Wragby  Admin</b></p>
+                                            <p>No 21A, Olubunmi Rotimi Street,<br> Lekki Phase 1, Lagos, Nigeria.</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br />
+                                @{
+                            if (SignInManager.IsSignedIn(User))
+                            {
+                                    <div class="container-fluid d-flex justify-content-between">
+                                        <div class="col-lg-3 pl-0">
+                                        <p class="mt-5 mb-2"><b>Invoice to: &nbsp;</b>@Model.User.FirstName&ensp;@Model.User.LastName</p>
+                                        <p class="mt-5 mb-2"><b>Company Name: &nbsp;</b>@Model.User.CompanyName</p>
+                                        <p class="mt-5 mb-2"><b>Company Address: &nbsp;</b>@Model.User.CompanyAddress</p>
+                                            
+                                        </div>
+
+                                    </div>
+                                   
+                            }
+
+                                }
+
+                            </div>
+                            <br />
+                            <div class="container-fluid d-flex justify-content-between">
+                                <div class="col-lg-3 pl-0">
+                                    <p class="mb-0 mt-2"><b>Invoice Date : </b> @DateTime.Now.ToLongDateString()</p>
+                                    <p><b>Due Date :</b> @DateTime.Now.AddDays(2).ToLongDateString()</p>
+                                </div>
+                            </div>
+                            <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                                <div class="table-responsive w-100">
+                                    <table class="table">
+                                        <thead>
+                                            <tr style="background-color:black; color:white;">
+
+                                                <th style="background-color:black; color:white;">Item</th>
+                                                <th style="background-color:black; color:white;">Description</th>
+                                                <th style="background-color:black; color:white;">Quantity</th>
+                                                <th style="background-color:black; color:white;">Unit cost</th>
+                                                <th style="background-color:black; color:white;">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.Products.Count(); i++)
+                                    {
+                                            <tr>
+
+                                                <td> @Model.Products[i].Name</td>
+                                                <td> @Model.Products[i].Description </td>
+
+                                                <td>@Model.CartItems[i].Count </td>
+                                                <td>&#8358;@Model.Products[i].WragbyPrice </td>
+
+                                                <td>&#8358;@(Model.Products[i].WragbyPrice * Model.CartItems[i].Count)</td>
+                                            </tr>
+                                    }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="container-fluid mt-5 w-100">
+                                <p class="text-right mb-2">Sub - Total amount: &#8358; @Model.CartTotal</p>
+                                <p class="text-right">vat (5%) : &#8358; @string.Format("{0:C}", ((Convert.ToInt64(@Model.CartTotal)) * 0.05)).Remove(0, 1)</p>
+                                <h4 class="text-right mb-5">
+                                    Total :  &#8358;@{ var m = (Convert.ToInt64(Model.CartTotal));
+                                var n = ((Convert.ToInt64(Model.CartTotal)) * 0.05); var total = m + n; } @string.Format("{0:C}", @total).Remove(0, 1)
+                            </h4>
+                            <hr>
+                        </div>
+                        1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+

@@ -1,0 +1,311 @@
+﻿@model cspv3.ViewModels.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Domain Configuration & Checkout";
+}
+<!-- page- title area start -->
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="https://www.firstchekout.com/first-checkout.v1.0.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+    function stringGen(len) {
+        var text = "";
+        var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < len; i++)
+            text += charset.charAt(Math.floor(Math.random() * charset.length));
+        return "FCC" + text;
+    }
+
+    $(document).ready(function () {
+        //var dom = $('#DomainVal').val();
+            $('#summary').show();
+            $("#domainPartition").hide();
+
+
+
+
+        $("#submitModel").click(function () {
+
+
+            if ($('#TermBox').prop('checked')) {
+
+
+                var selected_option = $('#PayMeth').val();
+                console.log(selected_option);
+                if (selected_option == 'FCH') {
+                    var ref = stringGen(8);
+                    var CompanyName = $('#CompanyName').val();
+
+                    var dom = CompanyName.replace(/[^A-Z0-9]/ig, "");
+
+
+                    var tok = $('[name=__RequestVerificationToken]').val();
+                    var customerPaymentModel = {};
+                    customerPaymentModel.FirstName = $('#FirstName').val();
+                    customerPaymentModel.LastName = $('#LastName').val();
+                    customerPaymentModel.CompanyName = $('#CompanyName').val();
+                    customerPaymentModel.Email = $('#Email').val();
+                    customerPaymentModel.Phone = $('#PhoneNumber').val();
+                    customerPaymentModel.CompanyAddress = $('#CompanyAddress').val();
+                    customerPaymentModel.Reference = ref;
+                    customerPaymentModel.Domain = dom+".onmicrosoft.com";
+
+                    //if (dom.length > 1) {
+                    //    customerPaymentModel.Domain = dom;
+                    //}
+                    //else {
+                    //    customerPaymentModel.Domain = $('#checkdomainvalue').val() + '.onmicrosoft.com';
+
+                    //}
+                    customerPaymentModel.payment = $('#payment').val();
+                    console.log(customerPaymentModel);
+
+                    $.ajax({
+                        url: '@Url.Action("PayStackCheckout","Checkout")',
+                        method: 'POST',
+                        headers: {
+                            'RequestVerificationToken': tok,
+
+                        },
+                        data: customerPaymentModel,
+
+                        success: function (returndata) {
+                            //if (returndata.isSuccess) {
+                            //    window.location = returndata.redirectUrl;
+                            //}
+                            console.log(returndata);
+
+                            var payload = {
+                                amount: payment * 100,
+
+                                description: 'Payment from Microsoft & FBN SME Productivity Platform',
+                                //merchant_key: 'x5UWyrYHTuXBa8oAHhaGe1Y2kfyBV1RjqrSbYDNPP5B2OTDjwH',
+                                merchant_key: 'T-CnqaH6cRjVyVloCS7aSS',                                test_mode: true, // set to true for demo 
+                                transaction_reference: ref,
+                                email: Email,
+                                redirect_url: 'https://fbncsbdev.azurewebsites.net/checkout/ordercompleted',
+                                onSuccess: function (data) {
+                                    // Success Callback
+                                    //console.log(data)
+
+                                },
+                                onError: function (data) {
+                                    // Error Callback
+                                    //console.log(data)
+
+                                },
+                                onCancel: function () {
+                                    // Cancel Callback
+                                }
+                            };
+
+
+                            FirstCheckout.configure(payload);
+
+
+                            //    FirstCheckout.showLightbox();
+
+
+                            FirstCheckout.showPaymentPage();
+
+                        }
+
+                    });
+                }
+                else {
+
+
+                    // something else when not
+                }
+            }
+
+        
+            else
+            {
+
+
+                alert("Please Accept the Terms and Conditions");
+
+                // something else when not
+            }
+            });
+
+        });
+
+
+</script>
+<!-- page- title area end -->
+<!-- coupon-area start -->
+@*<img style="        display: none;" id="spinner" src="/img/gif/spinner.gif" alt="Loading" />*@
+
+<!-- checkout-area start -->
+
+
+<div class="container">
+    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <div class="text-center">
+        <div class="simple-article size-3 grey uppercase col-xs-b5">checkout</div>
+        <div class="h2">check your info</div>
+        <div class="title-underline center"><span></span></div>
+    </div>
+</div>
+
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+
+
+<div class="container">
+    <div class="row">
+        @*<form method="post" asp-controller="Checkout" asp-action="PayStackCheckout" enctype="multipart/form-data" id="postform">*@
+        <div class="row">
+
+            <br />
+            <br />
+            <div id="summary" class="col-lg-6 col-md-6 col-12" style="        position: center;
+        display: none;">
+                <div class="your-order">
+                    <h4 class="h4 col-xs-b25">your order</h4>
+                    <div class="your-order-table table-responsive">
+                        <input type="hidden" value="@Model.User.FirstName" id="FirstName" />
+                        <input type="hidden" value="@Model.User.LastName" id="LastName" />
+                        <input type="hidden" value="@Model.User.CompanyName" id="CompanyName" />
+                        <input type="hidden" value="@Model.User.Email" id="Email" />
+                        <input type="hidden" value="@Model.User.PhoneNumber" id="Phone" />
+                        <input type="hidden" value="@Model.User.CompanyAddress" id="CompanyAddress" />
+
+                        @for (int i = 0; i < Model.CartItems.Count(); i++)
+                        {
+                            <div class="cart-entry clearfix">
+                                <a class="cart-entry-thumbnail"><img src="~/exzo/img/o365-logo-square.png" width="85" height="85"></a>
+                                <div class="cart-entry-description">
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="h6">
+                                                        <a href="#">
+                                                            @Model.Products[i].Name
+                                                        </a>
+                                                    </div>
+                                                    <div class="simple-article size-1">QUANTITY: @Model.CartItems[i].Count</div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="simple-article size-3 grey">  &#8358; @string.Format("{0:C}", (@Model.Products[i].WragbyPrice)).Remove(0, 1)</div>
+                                                    <div class="simple-article size-1">TOTAL:   &#8358; @string.Format("{0:C}", (@Model.CartItems[i].Count * @Model.Products[i].WragbyPrice)).Remove(0, 1)</div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="cart-color" style="        background: #eee;"></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        }
+
+                        <div class="order-details-entry simple-article size-3 grey uppercase">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Domain Name Purchase(@Model.DomainName)
+                                </div>
+                                <div class="col-xs-6 col-xs-text-right">
+                                    <div class="color"> &#8358; @string.Format("{0:C}", (@Model.DomainCost)).Remove(0, 1) </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="order-details-entry simple-article size-3 grey uppercase">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    cart subtotal
+                                </div>
+                                <div class="col-xs-6 col-xs-text-right">
+                                    <div class="color"> &#8358; @string.Format("{0:C}", (@Model.CartTotal)).Remove(0, 1) </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="order-details-entry simple-article size-3 grey uppercase">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    VAT 5%
+                                </div>
+                                <div class="col-xs-6 col-xs-text-right">
+                                    <div class="color">&#8358; @string.Format("{0:C}", ((Convert.ToInt64(@Model.CartTotal)) * 0.05)).Remove(0, 1)</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="order-details-entry simple-article size-3 grey uppercase">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Total Due Today
+                                </div>
+                                <div class="col-xs-6 col-xs-text-right">
+                                    <div class="color">
+                                        <h3>
+                                            &#8358;@{ var m = (Convert.ToInt64(Model.CartTotal));
+                                                var n = ((Convert.ToInt64(Model.CartTotal)) * 0.05); var total = m + n;
+                                            }
+                                            @string.Format("{0:C}", @total).Remove(0, 1)
+                                        </h3>
+                                        @{
+                                            var o = (Convert.ToInt64(Model.CartTotal) * 12);
+                                            var p = ((Convert.ToInt64(Model.CartTotal)) * 0.05); var totalfinal = m + n;
+                                        }
+                                        <input type="hidden" value="@totalfinal" id="payment" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="empty-space col-xs-b50"></div>
+                    <h4 class="h4 col-xs-b25">payment method</h4>
+                    <select id="PayMeth" class="SlectBox">
+                        <option value="">Choose an option</option>
+                        <option value="FCH">FirstCheckout</option>
+                    </select>
+                    <div class="empty-space col-xs-b10"></div>
+                    <div class="empty-space col-xs-b30"></div>
+                    <label class="checkbox-entry">
+                        <input type="checkbox" id="TermBox" /><span><a asp-controller="Docs" asp-action="TermsAndConditions" target="_blank">Terms and Conditions agreement</a></span>
+                    </label>
+
+
+                    <div class="empty-space col-xs-b35 col-md-b20"></div>
+
+
+                    <div class="button block size-2 style-3">
+                        <span class="button-wrapper">
+                            <span class="icon"><img src="~/exzo/img/icon-4.png" alt=""></span>
+                            <span class="text">Pay</span>
+                        </span>
+                        <input type="submit" id="submitModel" />
+                    </div>
+
+                    <div id="firstchekout_digital_embed"></div>
+                    <div class="empty-space col-xs-b35 col-md-b20"></div>
+
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- checkout-area end -->

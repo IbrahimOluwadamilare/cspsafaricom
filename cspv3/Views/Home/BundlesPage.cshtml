@@ -1,0 +1,138 @@
+﻿@model List<ProductOffering>
+@{
+    ViewData["Title"] = "Bundles Page";
+    Layout = "_Layout";
+}
+<section id="page-title" class="bundle">
+    <div class="container">
+
+        <div class="page-title">
+            <h1>All Bundles</h1>
+        </div>
+    </div>
+</section>
+
+
+<section id="content">
+    <div class="container">
+        <div class="heading-text heading-line text-center pb-5">
+            <h4>OFFICE 365 BUNDLES</h4>
+        </div>
+        <div class="row pricing-table colored">
+
+            @{
+                foreach (var item in Model)
+                {
+
+                    <div class="col-lg-4 col-md-12 col-12">
+                                    <div class="plan">
+                                        <div class="plan-header">
+                                            <h4 name="item_name" id="item_name">@item.Name</h4>
+                                            <p class="text-muted">Plan short description</p>
+
+                                            <span class="price"> &#8358; @string.Format("{0:C}", (@item.WragbyPrice)).Remove(0, 1)</span>
+                                            <br><span class="priceperuser">per user/month</span>
+                                            <br /><br />
+                                            <a asp-controller="ShoppingCart" asp-action="AddtoCart" asp-route-id="@item.cspID" class="btn btn-wh btn-light btn-red-hover" id="addToCart" style="background-color:white; color:red"><span><i class="fa fa-shopping-cart"></i>Add to Cart</span></a>
+                                        </div>
+                                        @if (@item.Name == "Wragby Office 365 Business Essentials")
+                                        {
+                                            <div class="plan-list">
+                                                <ul style="font-size:12px">
+                                                    <li><i class="fas fa-globe-americas"></i>Exchange email, instant messaging, SharePoint and Office Online</li>
+                                                    <li><i class="fa fa-thumbs-up"></i>300 Maximum Users</li>
+                                                    <li><i class="fa fa-signal"></i>Collaboration Service : Exchange, SharePoint, Teams and OneDrive</li>
+                                                    <li><i class="fa fa-tablet"></i>Supports 5 Phones & 5 Tablets only</li>
+                                                    <li><i class="fa fa-store"></i>OneDrive Storage Store files and access them from any device, anywhere</li>
+                                                    <li><i class="fa fa-star"></i>Unlimited 24x7x365-West Africa Support</li>
+                                                    <li><i class="fa fa-signal"></i>Free E-Mail Migration to Office 365</li>
+                                                    <li><i class="fa fa-user-astronaut"></i>Access to our expert and certified Microsoft Professionals </li>
+                                                    <li><i class="fa fa-anchor"></i>Rapid Managed Escalation </li>
+                                                    <li><i class="fa fa-atom"></i>Active Directory Integration </li>
+                                                    <li><i class="fa fa-server"></i>50GB per Mailbox </li>
+                                                    <li><i class="fa fa-broadcast-tower"></i>Company-wide intranet and team sites with SharePoint </li>
+                                                    <li><i class="fa fa-video"></i>Online meetings and video conferencing for up to 250 people </li>
+                                                    <li><i class="fa fa-allergies"></i>In-Place eDiscovery </li>
+                                                    <li><i class="fa fa-database"></i>Data Loss Prevention Address email security compliance </li>
+                                                    <li><i class="fa fa-rocket"></i>24/7 phone and web support </li>
+                                                    <li><i class="fa fa-server"></i>Licensed for commercial user </li>
+
+                                                </ul>
+
+                                            </div>
+                                        }
+                                        @if (@item.Name == "Wragby Office 365 Business Premium")
+                                        {
+                                            <div class="plan-list">
+                                                <ul style="font-size:12px">
+                                                    <li><i class="fas fa-globe-americas"></i>Office suite and Advanced Skype for Business</li>
+                                                    <li><i class="fa fa-thumbs-up"></i>300 Maximum Users</li>
+                                                    <li><i class="fa fa-signal"></i>Collaboration Service : Exchange, SharePoint, Teams and OneDrive</li>
+                                                    <li><i class="fa fa-tablet"></i>Supports 5 Phones & 5 Tablets only</li>
+                                                    <li><i class="fa fa-store"></i>OneDrive Storage Store files and access them from any device, anywhere</li>
+                                                    <li><i class="fa fa-star"></i>Unlimited 24x7x365-West Africa Support</li>
+                                                    <li><i class="fa fa-signal"></i>Free E-Mail Migration to Office 365</li>
+                                                    <li><i class="fa fa-user-astronaut"></i>Access to our expert and certified Microsoft Professionals </li>
+                                                    <li><i class="fa fa-anchor"></i>Rapid Managed Escalation </li>
+                                                    <li><i class="fa fa-atom"></i>Active Directory Integration </li>
+                                                    <li><i class="fa fa-server"></i>50GB per Mailbox </li>
+                                                    <li><i class="fa fa-broadcast-tower"></i>Company-wide intranet and team sites with SharePoint </li>
+                                                    <li><i class="fa fa-video"></i>Online meetings and video conferencing for up to 250 people </li>
+                                                    <li><i class="fa fa-allergies"></i>In-Place eDiscovery </li>
+                                                    <li><i class="fa fa-database"></i>Data Loss Prevention Address email security compliance </li>
+                                                    <li><i class="fa fa-rocket"></i>24/7 phone and web support </li>
+                                                    <li><i class="fa fa-server"></i>Licensed for commercial user </li>
+
+                                                </ul>
+
+                                            </div>
+                                        }
+                                        @if (@item.Name == "Wragby Office 365 Business")
+                                        {
+                                            <div class="plan-list">
+                                                <ul style="font-size:12px">
+                                                    <li><i class="fas fa-globe-americas"></i><span style="text-decoration: line-through;">Exchange email, instant messaging, SharePoint and Office Online</span></li>
+                                                    <li><i class="fa fa-thumbs-up"></i>300 Maximum Users</li>
+                                                    <li><i class="fa fa-signal"></i><span style="text-decoration: line-through;">Collaboration Service : Exchange, SharePoint, Teams and OneDrive</span></li>
+                                                    <li><i class="fa fa-tablet"></i><span style="text-decoration: line-through;">Supports 5 Phones & 5 Tablets only</span></li>
+                                                    <li><i class="fa fa-store"></i>OneDrive Storage Store files and access them from any device, anywhere</li>
+                                                    <li><i class="fa fa-star"></i>Unlimited 24x7x365-West Africa Support</li>
+                                                    <li><i class="fa fa-signal"></i><span style="text-decoration: line-through;">Free E-Mail Migration to Office 365</span></li>
+                                                    <li><i class="fa fa-user-astronaut"></i>Access to our expert and certified Microsoft Professionals </li>
+                                                    <li><i class="fa fa-anchor"></i>Rapid Managed Escalation </li>
+                                                    <li><i class="fa fa-atom"></i>Active Directory Integration </li>
+                                                    <li><i class="fa fa-server"></i><span style="text-decoration: line-through;">50GB per Mailbox</span></li>
+                                                    <li><i class="fa fa-broadcast-tower"></i>Company-wide intranet and team sites with SharePoint </li>
+                                                    <li><i class="fa fa-video"></i><span style="text-decoration: line-through;">Online meetings and video conferencing for up to 250 people</span></li>
+                                                    <li><i class="fa fa-allergies"></i><span style="text-decoration: line-through;">In-Place eDiscovery</span></li>
+                                                    <li><i class="fa fa-database"></i><span style="text-decoration: line-through;">Data Loss Prevention Address email security compliance</span></li>
+                                                    <li><i class="fa fa-rocket"></i>24/7 phone and web support </li>
+                                                    <li><i class="fa fa-server"></i>Licensed for commercial user </li>
+
+                                                </ul>
+
+                                            </div>
+                                        }
+                                    </div>
+                    </div>
+                }
+            }
+           
+
+
+        </div>
+
+    </div>
+
+</section>
+@*@section scripts{
+    <script type="text/javascript">
+        $(function () {
+                $("#addToCart").bind("click", function () {
+                    var url = "ShoppingCart?name=" + encodeURIComponent($("#item_name").val());
+                    alert(url);
+                    window.location.href = url;
+                });
+            });
+    </script>
+}*@

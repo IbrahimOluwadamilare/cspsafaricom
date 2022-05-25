@@ -1,0 +1,324 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "Manage Orders";
+    Layout = "_AdminLayout";
+}
+
+
+
+
+
+
+      <div class="row">
+
+          <div class="col-sm-12">
+
+
+              <div class="page-header">
+
+
+                  <h4 class="page-title"> All Orders </h4>
+
+
+
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">All Orders</li>
+                      </ol>
+                  </nav>
+
+              </div>
+
+              <div class="row grid-margin col-lg-12">
+                  <div class="col-lg-12">
+                      <div class="card">
+                          <div class="card-body">
+
+                              <br />
+
+                              <div class="panel panel-default card-view">
+                                  <div class="panel-wrapper collapse in">
+
+                                      <div class="panel-body">
+
+                                          <div class="table-wrap">
+                                              <div class="table-responsive">
+                                                  <table id="example" class="table table-hover display  pb-30">
+                                                      <thead>
+
+                                                          <tr>
+
+                                                              <th>Order Date</th>
+                                                              <th>First Name</th>
+                                                              <th>Last Name</th>
+                                                              <th>Phone No.</th>
+                                                              <th>Domain</th>
+                                                              <th>E-Mail</th>
+                                                              <th>Total + VAT 5%</th>
+                                                              <th>Payment Reference Info</th>
+                                                              <th>Payment Info</th>
+                                                              <th>
+                                                                  Payment Date
+                                                              </th>
+                                                              <th>
+                                                                  Payment Gateway
+                                                              </th>
+
+                                                              <th>
+                                                                  Order Fulfillment
+                                                              </th>
+                                                              <th>
+                                                                  Promo Code
+                                                              </th>
+                                                              <th>
+                                                                  Order Fulfillment Date
+                                                              </th>
+                                                              <th>
+                                                                  Last Payment Date
+                                                              </th>
+                                                              <th>
+                                                                  Billing Cycle
+                                                              </th>
+                                                              <th>
+                                                                  More Details
+                                                              </th>
+                                                              
+
+                                                          </tr>
+
+
+
+                                                      </thead>
+                                                      <tfoot>
+
+                                                      </tfoot>
+                                                      <tbody>
+                                                          @foreach (var item in Model)
+                                                          {
+
+
+                                                              <tr>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.OrderDate)
+                                                                  </td>
+
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.FirstName)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.LastName)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.Phone)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.Domain)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.Email)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.Total)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.Refinfo)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.Payment)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.PaymentDate)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.PaymentGateWay)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.FulfillPayment)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.PromoCode)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.FulFillmentDate)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.LastPaymentDate)
+                                                                  </td>
+                                                                  <td>
+                                                                      @Html.DisplayFor(modelItem => item.BillingCycle)
+                                                                  </td>
+
+                                                                  <td>
+                                                                      <button class="btn btn-sm btn-success"></button>
+                                                                  </td>
+                                                              </tr>
+
+                                                          }
+                                                      </tbody>
+                                                  </table>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+
+
+@*<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Order Records</h6>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="dt-buttons"><a class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="example" href="#"><span>Copy</span></a><a class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example" href="#"><span>CSV</span></a><a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example" href="#"><span>Excel</span></a><a class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example" href="#"><span>PDF</span></a><a class="dt-button buttons-print" tabindex="0" aria-controls="example" href="#"><span>Print</span></a></div>
+            <div class="pull-right">
+                <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="example"></label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default card-view">
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="table-wrap">
+                                    <div class="table-responsive">
+                                        <table id="example" class="table table-hover display  pb-30">
+
+                                            <thead>
+                                                <tr>
+                                                   
+                                                    <th>Order Date</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Phone No.</th>
+                                                    <th>Domain</th>
+                                                    <th>E-Mail</th>
+                                                    <th>Total + VAT 5%</th>
+                                                    <th>Payment Reference Info</th>
+                                                    <th>Payment Info</th>
+                                                    <th>
+                                                        Payment Date
+                                                    </th>
+                                                    <th>
+                                                        Payment Gateway
+                                                    </th>
+
+                                                    <th>
+                                                        Order Fulfillment
+                                                    </th>
+                                                    <th>
+                                                        Promo Code
+                                                    </th>
+                                                    <th>
+                                                        Order Fulfillment Date
+                                                    </th>
+                                                    <th>
+                                                        Last Payment Date
+                                                    </th>
+                                                    <th>
+                                                        Billing Cycle
+                                                    </th>
+                                                    <th>
+                                                        More Details
+                                                    </th>
+                                                    <th></th>
+
+                                                </tr>
+                                            </thead>
+                                          
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+
+                                                
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.OrderDate)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LastName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Phone)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Domain)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Email)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Total)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Refinfo)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Payment)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PaymentDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PaymentGateWay)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FulfillPayment)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PromoCode)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FulFillmentDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LastPaymentDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.BillingCycle)
+                                                    </td>
+
+                                                    <td>
+                                                       <button class="btn btn-sm btn-success"></button>
+                                                    </td>
+                                                </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                       
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>*@

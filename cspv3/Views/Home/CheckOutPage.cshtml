@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "CheckOut Page";
+    Layout = "_Layout";
+}
+    <section id="page-title">
+        <div class="container">
+            <div class="page-title">
+                <h1>Checkout</h1>
+                <span>Checkout details</span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Shop</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">Checkout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="seperator">
+        <i class="fa fa-credit-card"></i>
+    </div>
+    <section id="shop-checkout">
+        <div class="container">
+            <div class="shop-cart">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h4 class="upper">Your Order</h4>
+                        <div class="table table-sm table-striped table-responsive table table-bordered table-responsive">
+                            <table class="table m-b-0">
+                                <thead>
+                                    <tr>
+                                        <th class="cart-product-remove"></th>
+                                        <th class="cart-product-thumbnail">Product</th>
+                                        <th class="cart-product-name">Description</th>
+                                        <th class="cart-product-subtotal">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="cart-product-remove">
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                        </td>
+                                        <td class="cart-product-thumbnail">
+                                            <a href="#">
+                                                <img src="~/img/office365.png" alt="Bolt Sweatshirt">
+                                            </a>
+                                            <div class="cart-product-thumbnail-name">Microsoft Office 365</div>
+                                        </td>
+                                        <td class="cart-product-description">
+                                            <p>
+                                                <span>Business Essentials Bundle</span>
+
+                                            </p>
+                                        </td>
+                                        <td class="cart-product-subtotal">
+                                            <span class="amount">₦2109.00</span>
+                                        </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <h4>Order Total</h4>
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="cart-product-name">
+                                                    <strong>Order Subtotal</strong>
+                                                </td>
+                                                <td class="cart-product-name text-right">
+                                                    <span class="amount">₦2109.00</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart-product-name">
+                                                    <strong>VAT</strong>
+                                                </td>
+                                                <td class="cart-product-name  text-right">
+                                                    <span class="amount">0.00</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart-product-name">
+                                                    <strong>Coupon</strong>
+                                                </td>
+                                                <td class="cart-product-name  text-right">
+                                                    <span class="amount">20%</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart-product-name">
+                                                    <strong>Total</strong>
+                                                </td>
+                                                <td class="cart-product-name text-right">
+                                                    <span class="amount color lead"><strong>0.00</strong></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4 class="upper">Payment Method</h4>
+                                <div class="list-group">
+                                    <input type="radio" name="RadioInputName" value="Value1" id="Radio1">
+                                    <label class="list-group-item" for="Radio1">Direct Bank Transfer</label>
+                                    <input type="radio" name="RadioInputName" value="Value2" id="Radio2">
+                                    <label class="list-group-item" for="Radio2">Cheque Payment</label>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </section>

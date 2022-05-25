@@ -1,0 +1,309 @@
+﻿@model cspv3.Models.Order
+@{
+    ViewBag.Title = "Invoice";
+    // Layout = "~/Views/ShoppingCart/_ShoppingCartLayout.cshtml";
+    Layout = "_CustomerLayout";
+}
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+<script type="text/javascript" src="https://www.firstchekout.com/first-checkout.v1.0.min.js"></script>
+<style>
+    @@media print {
+        body * {
+            visibility: visible;
+        }
+
+        th::after * {
+            background-color: black;
+            color: white;
+        }
+
+        #section-to-print, #section-to-print * {
+            visibility: visible;
+        }
+
+        #section-to-print {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+        function stringGen(len) {
+            var text = "";
+            var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < len; i++)
+                text += charset.charAt(Math.floor(Math.random() * charset.length));
+            return "RNWFCC" + text;
+        }
+
+
+        var model = {};
+
+        $("#pay").click(function () {
+
+         var method =  $( "#payMeth option:selected" ).text();
+
+
+           console.log(method);
+            if (method === "FirstCheckout") {
+
+              var Email = $('#email').val();
+            var OrderId = $('#orderid').val();
+            var Reference = stringGen(8);
+            var tok = $('[name=__RequestVerificationToken]').val();
+
+            model.OrderId = OrderId;
+            model.Reference = Reference;
+
+            //console.log(Reference);
+            //console.log(OrderId);
+            console.log(tok);
+
+
+
+
+            $.ajax({
+                url: '@Url.Action("RenewalPayment", "Checkout")',
+                method: 'POST',
+                headers: {
+                    'RequestVerificationToken': tok,
+
+                },
+                data: { OrderId, Reference },
+
+                success: function (returndata) {
+                    if (returndata.isSuccess) {
+
+                        console.log(returndata, @Model.Total);
+
+                        var payload = {
+
+                            // bad code, rewrite 👎👎
+                            amount: (@Model.Total * 100) + (@Model.Total * 100 * 0.05),
+
+                            description: 'Payment from Wragby CSB Platform',
+                            merchant_key: 'x5UWyrYHTuXBa8oAHhaGe1Y2kfyBV1RjqrSbYDNPP5B2OTDjwH',
+                            //merchant_key: 'T-CnqaH6cRjVyVloCS7aSS',
+                            test_mode: false, // set to true for demo
+                            transaction_reference: Reference,
+                            email: Email,
+                            redirect_url: 'https://csp.wragbysolutions.com/checkout/FCHOrderCompleted',
+                            onSuccess: function (data) {
+                                // Success Callback
+                                //console.log(data)
+
+                            },
+                            onError: function (data) {
+                                // Error Callback
+                                //console.log(data)
+
+                            },
+                            onCancel: function () {
+                                // Cancel Callback
+                            }
+                        };
+
+
+                        FirstCheckout.configure(payload);
+
+
+                        //    FirstCheckout.showLightbox();
+
+
+                        FirstCheckout.showPaymentPage();
+
+                    }
+                }
+
+            });
+
+            }
+
+            if (method === "Paystack") {
+
+             var Email = $('#email').val();
+            var OrderId = $('#orderid').val();
+            var tok = $('[name=__RequestVerificationToken]').val();
+                var Reference = "PayRNW";
+            model.OrderId = OrderId;
+
+                console.log(tok);
+
+                $.ajax({
+                    url: '@Url.Action("PaystackRenewalPayment", "Checkout")',
+                method: 'POST',
+                headers: {
+                    'RequestVerificationToken': tok,
+
+                },
+                data: { OrderId, Reference },
+
+                success: function (returndata) {
+                    if (returndata.isSuccess) {
+
+                        console.log(returndata);
+
+                       window.location = returndata.redirectUrl;
+
+
+                    }
+                }
+
+            });
+
+            }
+        });
+
+        });
+
+
+
+
+
+</script>
+
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+
+        <h4 class="page-title" style="color:darkgoldenrod"> Invoice  </h4>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Customerdashboard" asp-action="Orders">Go Back to Orders</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel panel-default card-view">
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <h3 class="text-right my-5">Invoice&nbsp</h3>
+                                    <hr>
+                                </div>
+                                <input type="hidden" value="@Model.Email" id="email" />
+                                <input type="hidden" value="@Model.OrderId" id="orderid" />
+
+                                <div class="container-fluid d-flex justify-content-between">
+                                    <div class="col-lg-3 pl-0">
+                                        <p class="mt-5 mb-2"><b>Wragby  Admin</b></p>
+                                        <p>No 21A, Olubunmi Rotimi Street,<br> Lekki Phase 1, Lagos, Nigeria.</p>
+                                    </div>
+                                    @{
+                                        if (SignInManager.IsSignedIn(User))
+                                        {
+                                            <div class="col-lg-9 pr-0">
+                                                <p class="mt-5 mb-2 text-right"><b>Invoice to</b></p>
+                                                <p class="text-right">  @Model.FirstName&ensp;@Model.LastName <br>@Model.Email <br> @Model.CompanyAddress.</p>
+                                            </div>
+                                        }
+
+                                    }
+
+                                </div>
+
+
+
+                                <div class="container-fluid d-flex justify-content-between">
+                                    <div class="col-lg-3 pl-0">
+                                        <p class="mb-0 mt-5"><b>Invoice Date :</b>  @DateTime.Now.ToLongDateString()</p>
+                                        <p><b>Due Date :</b> @Model.NextPaymentDate.ToLongDateString()</p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                                    <div class="table-responsive w-100">
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="bg-dark text-white">
+
+                                                    <th>Item</th>
+                                                    <th>Description</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit cost</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.OrderDetails.Count(); i++)
+                                                {
+                                                    <tr>
+
+                                                        <td> @Model.OrderDetails[i].Product.Name</td>
+                                                        <td> @Model.OrderDetails[i].Product.Description</td>
+
+                                                        <td>@Model.OrderDetails[i].Quantity </td>
+                                                        <td>&#8358; @String.Format(Model.OrderDetails[i].Product.WragbyPrice.ToString(), "N") </td>
+
+                                                        <td>&#8358; @(Model.Total)</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="container-fluid mt-5 w-100">
+                                    <p class="text-right mb-2">Sub - Total amount: &#8358;@Model.Total</p>
+                                    <br />
+                                    <p class="text-right">vat (5%) : &#8358; @string.Format("{0:C}", ((Convert.ToInt64(@Model.Total)) * 0.05)).Remove(0, 1)</p>
+                                    <br />
+                                    <h4 class="text-right mb-5">
+                                        Total :  &#8358;@{ var m = (Convert.ToInt64(Model.Total));
+                                            var n = ((Convert.ToInt64(Model.Total)) * 0.05); var total = m + n; } @string.Format("{0:C}", @total).Remove(0, 1)
+                                        </h4>
+                                        <hr>
+                                    </div>
+                                    <div class="container-fluid w-100">
+
+                                        <a class="btn btn-primary float-right mt-4 ml-2" media="print" onclick="forprint()" target="_blank"><i class="fa fa-print mr-1"></i>Print</a>
+
+                                    </div>
+                                    <div class="container-fluid w-100 col-sm-3 col-sm-offset-9">
+                                        <h4 class="h4 col-xs-b25">payment method</h4>
+
+                                        <select id="payMeth" class="SlectBox form-control">
+                                            <option selected="selected">Paystack</option>
+                                            <option value="volvo">FirstCheckout</option>
+
+                                        </select>
+                                        <br />
+
+                                        <button type="submit" class="btn btn-primary float-right mt-4 ml-2" id="pay">Make Payment</button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+
+                <div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        function forprint() {
+            if (!window.print) {
+                return
+            }
+            var printWindow = window;
+            setTimeout(printWindow.print, 500);
+
+
+        }
+    </script>

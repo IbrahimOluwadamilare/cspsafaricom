@@ -1,0 +1,187 @@
+﻿@model cspv3.ViewModels.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<section id="page-title" class="help">
+    <div class="container">
+        <div class="page-title">
+            <h1 class="custom-color">Shopping Cart</h1>
+
+        </div>
+
+    </div>
+</section>
+<section id="shop-cart">
+    <div class="container">
+        <div class="shop-cart">
+            <div class="table table-sm table-striped table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th class="cart-product-thumbnail">Product</th>
+                            <th class="cart-product-name">Description</th>
+                            <th class="cart-product-price">Unit Price</th>
+                            <th class="cart-product-quantity">Quantity</th>
+                            <th class="cart-product-subtotal">Total</th>
+                            <th class="cart-product-remove"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.CartItems.Count(); i++)
+                        {
+                            <tr>
+
+                                <td class="cart-product-thumbnail" name="record">
+
+                                    @if (@Model.Products[i].Name.Contains("Azure Active Directory") == true)
+                                    {
+                                        <a class="cart-entry-thumbnail" href="#">
+                                            <img src="~/img/office365.png" alt="Bolt Sweatshirt">
+                                        </a>
+                                    }
+                                    <div class="cart-product-thumbnail-name">@Model.Products[i].Name</div>
+                                </td>
+                                <td class="cart-product-description">
+                                    <p>
+                                        <span>@Model.Products[i].Description</span>
+
+                                    </p>
+                                </td>
+                                <td class="cart-product-price">
+                                    <span class="amount" id="unitprice"> &#8358; @string.Format("{0:C}", @Model.Products[i].WragbyPrice).Remove(0, 1)</span>
+                                </td>
+                                <td class="cart-product-quantity">
+                                    <div class="quantity">
+                                        <a type="button" style="background-color:#4b5" class="minus btn" asp-action="Decrement" asp-controller="ShoppingCart" asp-route-id="@Model.Products[i].cspID">-</a>
+                                        <input type="text" class="qty" id="quantity" value=@Model.CartItems[i].Count name="quantity" onkeyup="update(this, '@Model.Products[i].cspID')">
+
+                                        <a type="button" style="background-color:#4b5" class="plus btn" asp-action="Increment" asp-controller="ShoppingCart" asp-route-id="@Model.Products[i].cspID">+</a>
+                                    </div>
+                                </td>
+                                <td class="cart-product-subtotal">
+                                    <span class="amount" id="total"> &#8358; @string.Format("{0:C}", (@Model.CartItems[i].Count * @Model.Products[i].WragbyPrice)).Remove(0, 1)</span>
+                                </td>
+                                <td class="cart-product-remove">
+                                    <a asp-action="RemoveItem" asp-controller="ShoppingCart" asp-route-id="@Model.Products[i].cspID" class="btn" style="padding:5px 5px"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="text" placeholder="Coupon Code" id="CouponCode" class="form-control">
+                            <button type="submit" id="widget-subscribe-submit-button" class="btn btn-sm">Apply</button>
+                        </div>
+                        <p class="small">Enter any valid coupon or promo code here to redeem your discount.</p>
+                    </form>
+                </div>
+                <div class="col-lg-8 text-right">
+                    <a type="button" class="btn" asp-controller="ShoppingCart" asp-action="GenerateInvoice">Generate Invoice</a>
+                </div>
+
+            </div>
+            <div class="row">
+                <hr class="space">
+
+                <div class="col-lg-12 p-r-10 ">
+                    <div class="table-responsive">
+                        <h4>Cart Subtotal</h4>
+                        <table class="table">
+                            <tbody>
+
+                                <tr>
+                                    <td class="cart-product-name">
+                                        <strong>Cart Subtotal</strong>
+                                    </td>
+                                    <td class="cart-product-name text-right">
+                                        <span class="amount" id="cartsubtotal"> &#8358; @string.Format("{0:C}", (@Model.CartTotal)).Remove(0, 1)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cart-product-name">
+                                        <strong>VAT 5%</strong>
+                                    </td>
+                                    <td class="cart-product-name  text-right">
+                                        <span class="vat">&#8358; @string.Format("{0:C}", ((Convert.ToInt64(@Model.CartTotal)) * 0.05)).Remove(0, 1)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cart-product-name">
+                                        <strong>Coupon</strong>
+                                    </td>
+                                    <td class="cart-product-name  text-right">
+                                        <span class="amount" id="coupon">0</span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="cart-product-name">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="cart-product-name text-right">
+                                        <span class="amount color lead" id="carttotal">
+
+                                            &#8358;@{ var m = (Convert.ToInt64(Model.CartTotal));
+                                                var n = ((Convert.ToInt64(Model.CartTotal)) * 0.05); var total = m + n; } @string.Format("{0:C}", @total).Remove(0, 1)
+
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <a asp-action="Index" asp-controller="Checkout" class="btn icon-left float-right"><span>Proceed to Checkout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @section scripts{
+        <script type="text/javascript">
+
+            function update(args, id) {
+                var value = args.value;
+                console.log(value);
+                console.log(id);
+                if (value == null || value == "") {
+                    alert("Your quantity cannot be empty");
+                }
+                else {
+                    //ajax call to post number of items on cart to controller
+                    $.ajax({
+                        type: "GET",
+                        url: "/ShoppingCart/UpdateCart",
+
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: {
+                            value,
+                            id
+                        },
+                        success: function (response) {
+
+                            if (response.isSuccess) {
+                                window.location = response.redirecturl;
+                            }
+                            else {
+                                alert(response.message);
+
+                            }
+                        },
+                        error: function (response) {
+                            alert("this is an error" + response);
+                        }
+                    });
+                }
+            }
+
+        </script>
+    }

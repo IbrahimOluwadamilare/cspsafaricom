@@ -1,0 +1,152 @@
+﻿@inject cspv3.Services.IShoppingCart cart
+
+
+<div id="topbar" class="topbar-fullwidth d-none d-xl-block d-lg-block">
+    <div class="container" style="background-color:#4b5">
+        <div class="row">
+            <div class="col-md-10">
+                <ul class="top-menu">
+                    <li><a href="#">Phone: +234 908 773 3358</a></li>
+
+                    <li><a href="#">Support Email: spoc@wragbysolutions.com</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 d-none d-sm-block" style="color:white;">
+
+                <ul class="top-menu">
+                    @await Html.PartialAsync("_LoginPartial")
+
+
+                </ul>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<header id="header" data-fullwidth="true" class="">
+    <div class="header-inner">
+        <div class="container">
+
+            <div id="logo">
+                <a asp-controller="Home" asp-action="Index" class="logo" data-src-dark="images/logo-dark.png">
+                    <img src="~/img/safaricom_business_logo_04-16-2019.png" alt="Polo Logo">
+                </a>
+            </div>
+
+
+            <div id="search">
+                <div id="search-logo"><img src="" alt="Polo Logo"></div>
+                <button id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></button>
+                <form class="search-form" action="search-results-page.html" method="get">
+                    <input class="form-control" name="q" type="search" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <span class="text-muted">Start typing &amp; press "Enter" or "ESC" to close</span>
+                </form>
+                <div class="search-suggestion-wrapper">
+                    <div class="search-suggestion">
+                        <h3>News Articles</h3>
+                        <p><a href="#">Beautiful nature, and rare feathers!</a></p>
+                        <p><a href="#">New costs and rise of the economy!</a></p>
+                        <p><a href="#">A true story, that never been told!</a></p>
+                    </div>
+                    <div class="search-suggestion">
+                        <h3>Looking for these?</h3>
+                        <p><a href="#">New costs and rise of the economy!</a></p>
+                        <p><a href="#">AI can be trusted to take answer calls </a></p>
+                        <p><a href="#">Polo now lets you easily create any beautiful clean website</a></p>
+                    </div>
+                    <div class="search-suggestion">
+                        <h3>Blog Posts</h3>
+                        <p><a href="#">A true story, that never been told!</a></p>
+                        <p><a href="#">Beautiful nature, and rare feathers!</a></p>
+                        <p><a href="#">The most happiest time of the day!</a></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="header-extras">
+                <ul>
+                    <li>
+
+                        <a id="btn-search" href="#"> <i class="icon-search1" style="color:#000"></i></a>
+
+                    </li>
+                    <li class="d-none d-sm-block">
+
+
+                        @{
+                            var context = cart.GetCart(this.Context);
+                            var usercart = await context.GetCartItemsAsync();
+
+
+
+                            <div id="shopping-cart" class="p-dropdown">
+                                <a asp-controller="ShoppingCart" asp-action="Index"><span class="shopping-cart-items" id="number_of_cartitems">@usercart.Sum(a => a.Count)</span><i class="icon-shopping-cart1" style="color:#000"></i></a>
+
+                            </div>
+                        }
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <div id="mainMenu-trigger">
+                <button class="lines-button x"> <span class="lines"></span> </button>
+            </div>
+
+
+            <div id="mainMenu" class="light">
+                <div class="container">
+                    <nav>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="dropdown">
+                                <a asp-controller="Home" asp-action="BundlesPage">Business Bundles</a>
+
+                            </li>
+                            <li class="dropdown">
+                                <a asp-controller="Home" asp-action="LicencedBasedProducts" asp-route-productCategory="Azure Active Directory">Licence Based Products</a>
+
+                            </li>
+                            <li class="dropdown">
+                                <a asp-controller="Home" asp-action="Help">Help Videos</a>
+
+                            </li>
+                            <li class="dropdown mega-menu-item">
+                                <a asp-controller="Home" asp-action="Faq">Faqs</a>
+
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+@*@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cartCount = $("#number_of_cartitems").html();
+            if (cartCount = 0) {
+
+                shop-cart
+
+                <div class="container">
+        <div class="p-t-10 m-b-20 text-center">
+<div class="heading-text heading-line text-center">
+<h4>Your cart is currently empty.</h4>
+</div>
+<a class="btn icon-left" href="#"><span>Return To Shop</span></a>
+</div>
+</div>
+
+            }
+            alert("hey");
+        });
+    </script>
+}*@

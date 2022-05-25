@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | Wragby CSB Platform</title>
+
+    <environment include="Development">
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" />
+    </environment>
+    <link rel="shortcut icon" href="~/img/favicon.png">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+    <link href="~/css/plugins.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/helperstyle.css" rel="stylesheet" />
+
+    @Html.Raw(JavaScriptSnippet.FullScript)
+
+</head>
+<body class="breakpoint-xl">
+
+    @await Html.PartialAsync("_LayoutHeader")
+
+    <environment include="Development">
+
+        <script src="~/js/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+
+        <script src="~/js/jquery.js"></script>
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+            </script>*@
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+
+
+
+    @*<!-- Preloader -->
+        <div class="preloader-it">
+            <div class="la-anim-1"></div>
+        </div>
+        <!-- /Preloader -->
+        <div class="wrapper pimary-color-green open-setting-panel theme-6-active">
+
+            <div class="page-wrapper">
+                <div class="container-fluid pt-25">*@
+    @RenderBody()
+    <span class="AntiForge"> @Html.AntiForgeryToken() </span>
+
+    @await Html.PartialAsync("_LayoutFooter")
+    @*@await Html.PartialAsync("_SellerLayoutAside")
+
+
+
+                    @await Html.PartialAsync("_LayoutFooter")*
+                <@*/div>
+            </div>
+        </div>*@
+
+    @RenderSection("Scripts", required: false)
+
+
+
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/functions.js"></script>
+
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5c93937c101df77a8be3c40d/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+</body>
+</html>

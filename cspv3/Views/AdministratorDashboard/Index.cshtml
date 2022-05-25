@@ -1,0 +1,230 @@
+﻿@model cspv3.ViewModels.AdminDashBoardViewModel
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Admin Control Center";
+    Layout = "_AdminLayout";
+}
+
+@inject UserManager<ApplicationUser> userManager;
+<style>
+
+
+    #example2 {
+        background-color: #022e64;
+        padding: 15px;
+        color:azure;
+        border-color:darkgoldenrod;
+    }
+    #bgcolor{
+        background-color: firebrick;
+    }
+  
+ 
+</style>
+
+<br />
+<div class="container-fluid pt-25" style="background-color:white;margin-top:20px">
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default card-view pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pa-0">
+                        <div class="sm-data-box" style="background-color: cornflowerblue">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                        <span class="txt-light block counter">
+                                            <span class="counter-anim">
+                                                @{
+                                                    var inorder = Model.Order.Where(o => o.Refinfo == null).Count();
+                                                }
+                                                @inorder
+                                               
+
+                                            </span>
+                                        </span>
+                                        <span class="weight-500 uppercase-font block font-9 txt-light">Invoice Order</span>
+                                    </div>
+                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                        <i class="icon-layers data-right-rep-icon txt-light"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default card-view pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pa-0">
+                        <div class="sm-data-box" id="bgcolor">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                        <span class="txt-light block counter">
+                                            <span class="counter-anim">
+
+                                                @{
+                                                    var unpaid = Model.Order.Where(o => o.Payment == false).Count();
+                                                }
+                                                @unpaid
+
+                                            </span>
+                                        </span>
+                                        <span class="weight-500 uppercase-font block font-9 txt-light"> Outstanding Payments</span>
+                                    </div>
+                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                        <i class="icon-bag data-right-rep-icon txt-light"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default card-view pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pa-0">
+                        <div class="sm-data-box" style="background-color:forestgreen;height:100px">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                        <span class="txt-light block counter">
+                                            <span class="counter-anim">
+
+                                                @{
+                                                    var paid = Model.Order.Where(o => o.Payment == true).Count();
+                                                }
+                                                @paid
+
+
+                                            </span>
+                                        </span>
+                                        <span class="weight-500 uppercase-font block font-9 txt-light"> Payments</span>
+                                    </div>
+                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                        <span class="data-right-rep-icon txt-light">  ‎₦ </span>
+                                        @*<i class="zmdi zmdi-money data-right-rep-icon txt-light"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default card-view pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pa-0">
+                        <div class="sm-data-box" id="bgcolor">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                        <span class="txt-light block counter">
+                                            <span class="counter-anim">
+
+                                                @{
+                                                    var uncount = Model.Order.Where(o => o.FulfillPayment == false).Count();
+                                                }
+                                                @uncount
+
+
+                                            </span>
+                                        </span>
+                                        <span class="weight-500 uppercase-font block font-9 txt-light"> Unfulfilled Orders</span>
+                                    </div>
+                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                        <i class="zmdi zmdi-shopping-basket data-right-rep-icon txt-light"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default card-view pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pa-0">
+                        <div class="sm-data-box" style="background-color: darkgreen">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                        <span class="txt-light block counter">
+                                            <span class="counter-anim">
+
+                                                @{
+                                                    var count = Model.Order.Where(o => o.FulfillPayment == true).Count();
+                                                }
+                                                @count
+
+
+
+                                            </span>
+                                        </span>
+                                        <span class="weight-500 uppercase-font block font-9 txt-light"> Fulfilled Orders</span>
+                                    </div>
+                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                        <i class="zmdi zmdi-shopping-cart-plus data-right-rep-icon txt-light"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Admin" asp-action="ManageOrder">
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default card-view pa-0">
+                    <div class="panel-wrapper collapse in">
+                        <div class="panel-body pa-0">
+                            <div class="sm-data-box" id="bgcolor">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                            <span class="txt-light block counter">
+                                                <span class="counter-anim">
+
+                                                    @{
+                                                        var countotal = Model.Order.Count();
+                                                    }
+                                                    @countotal
+
+
+
+                                                </span>
+                                            </span>
+                                            <span class="weight-500 uppercase-font block font-9 txt-light"> Total Orders</span>
+                                        </div>
+                                        <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                            <i class="zmdi zmdi-shopping-cart data-right-rep-icon txt-light"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- /Row -->
+    <!-- Row -->
+    <div class="row">
+        
+       
+    </div>
+    <!-- /Row -->
+    <!-- Row -->
+    
+    <!-- Row -->
+</div>

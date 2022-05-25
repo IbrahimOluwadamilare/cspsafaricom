@@ -1,0 +1,287 @@
+﻿
+@model IEnumerable<cspv3.Models.ProductOffering>
+
+@{
+    ViewData["Title"] = "Licence Based Products";
+    var category = ViewBag.ProductCategory as string;
+
+}
+@using X.PagedList.Mvc.Core
+
+<section id="page-title" class="help">
+    <div class="parallax-container img-loaded" data-velocity="-.090"></div>
+    <div class="container">
+        <div class="page-title">
+            <h1>Licenced Based Products</h1>
+        </div>
+       
+    </div>
+</section>
+<section id="page-content" class="sidebar-right" style="transform: none;">
+    <div class="container" style="transform: none;">
+        <div class="row" style="transform: none;">
+
+            <div class="sidebar sticky-sidebar col-lg-3" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+                <div class="widget widget-archive">
+                    <h4 class="widget-title">Product categories</h4>
+                    <hr />
+                    <ul class="list list-lines">
+                        <li>
+
+
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Azure Active Directory">Azure Active Directory</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Customer Lockbox">Customer Lockbox</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Delve">Microsoft Delve</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Dyn">Dynamics 365</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Exchange">Exchange Online</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Enterprise Mobility">Enterprise Mobility + Security</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Kaizala">Microsoft Kaizala Pro</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Cloud App">Microsoft Cloud App</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Flow">Microsoft Flow</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Visio">Microsoft Visio</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Intune">Microsoft Intune</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="MyAnalytics">Microsoft MyAnalytics</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Social Engagement">Microsoft Social Engagement</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Stream">Microsoft Stream</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Microsoft 365">Microsoft 365</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="PowerApps">Microsoft PowerApps</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Microsoft Azure Information">Microsoft Azure Information Protection</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Minecraft">Minecraft</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Office">Office 365</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="OneDrive">OneDrive</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Project Online">Project Online</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Power BI">Power BI</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Sharepoint">Sharepoint Online</a>
+                        </li>
+
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Windows 10">Windows 10 Enterprise</a>
+                        </li>
+                        <li>
+                            <a asp-action="LicencedBasedProducts" asp-controller="Home" asp-route-productCategory="Yammer">Yammer</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <h4 class="widget-title">Tags</h4>
+                <div class="tags">
+                    <a href="#">OneDrive</a>
+                    <a href="#">Office 365</a>
+                    <a href="#">Windows 10 Enterprise</a>
+                    <a href="#">Power BI</a>
+                    <a href="#">Microsoft PowerApps</a>
+                    <a href="#">Minecraft</a>
+
+                </div>
+            </div>
+
+            <div class="content col-lg-3">
+                <div class="order-select">
+                    <h6>Sort by</h6>
+                    <p>Showing 1–12 of 25 results</p>
+                    <form method="get">
+                        <select class="form-control">
+                            <option selected="selected" value="order">Default sorting</option>
+                            <option value="popularity">Sort by popularity</option>
+                            <option value="rating">Sort by average rating</option>
+                            <option value="date">Sort by newness</option>
+                            <option value="price">Sort by price: low to high</option>
+                            <option value="price-desc">Sort by price: high to low</option>
+                        </select>
+                    </form>
+                </div>
+                @foreach (var product in Model)
+                {
+
+                    <div class="product">
+                        <div class="product-image">
+
+                            @*<a>
+                        @if (@product.Name.Contains("Azure Active Directory") == true)
+                        {
+                            <img src="~/img/licencedproducts/acctivedirectory.jpg" alt="Azure Active Directory" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Customer Lockbox") == true)
+                        {
+                            <img src="~/img/licencedproducts/office365.jpg" alt="Customer Lockbox" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Delve") == true)
+                        {
+                            <img src="~/img/licencedproducts/delve.jpg" alt="Microsoft Delve" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Dyn") == true)
+                        {
+                            <img src="~/img/licencedproducts/dynamics.jpg" alt="Dynamics 365" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Exchange") == true)
+                        {
+                            <img src="~/img/licencedproducts/exchange.jpg" alt="Microsoft Exchange Online" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Enterprise Mobility") == true)
+                        {
+                            <img src="~/img/licencedproducts/enterprisemobility.jpg" alt="Microsoft Enterprise Mobility" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Kaizala") == true)
+                        {
+                            <img src="~/img/licencedproducts/kaizala.jpg" alt="Microsoft Kaizala Pro" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Cloud App") == true)
+                        {
+                            <img src="~/img/licencedproducts/cloud.jpg" alt="Microsoft Cloud App" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Flow") == true)
+                        {
+                            <img src="~/img/licencedproducts/flow.jpg" alt="Microsoft Flow" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Visio") == true)
+                        {
+                            <img src="~/img/licencedproducts/visio.jpg" alt="Microsoft Visio" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Intune") == true)
+                        {
+                            <img src="~/img/licencedproducts/intune.jpg" alt="Microsoft Intune" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("MyAnalytics") == true)
+                        {
+                            <img src="~/img/licencedproducts/myanalytics.jpg" alt="Microsoft MyAnalytics" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Social Engagement") == true)
+                        {
+                            <img src="~/img/licencedproducts/social.jpg" alt="Microsoft Social Engagement" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Stream") == true)
+                        {
+                            <img src="~/img/licencedproducts/stream.jpg" alt="Microsoft Stream" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Microsoft 365") == true)
+                        {
+                            <img src="~/img/licencedproducts/m365.jpg" alt="Microsoft 365" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("PowerApps") == true)
+                        {
+                            <img src="~/img/licencedproducts/powerapps.jpg" alt="Microsoft Powerapps" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Microsoft Azure Information") == true)
+                        {
+                            <img src="~/img/licencedproducts/AIP.jpg" alt="Microsoft Azure Information Protection" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Minecraft") == true)
+                        {
+                            <img src="~/img/licencedproducts/minecraft.jpg" alt="Minecraft" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Office") == true)
+                        {
+                            <img src="~/img/licencedproducts/office365.jpg" alt="Office 365" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("OneDrive") == true)
+                        {
+                            <img src="~/img/licencedproducts/onedrive.jpg" alt="OneDrive" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Project Online") == true)
+                        {
+                            <img src="~/img/licencedproducts/projectonline.jpg" alt="Project Online" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Power BI") == true)
+                        {
+                            <img src="~/img/licencedproducts/powerbi.jpg" alt="Power BI" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Sharepoint") == true)
+                        {
+                            <img src="~/img/licencedproducts/sharepoint.jpg" alt="sharepoint" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Skype") == true)
+                        {
+                            <img src="~/img/licencedproducts/skype.jpg" alt="Skype for Business" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Windows 10") == true)
+                        {
+                            <img src="~/img/licencedproducts/windows10.jpg" alt="Windows 10" style="max-width:95%;" />
+                        }
+                        else if (@product.Name.Contains("Yammer") == true)
+                        {
+                            <img src="~/img/licencedproducts/yammer.jpg" alt="Yammer" style="max-width:95%;" />
+                        }
+                    </a>*@
+
+
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+            <div class="content col-lg-6">
+                @foreach (var product in Model)
+                {
+                <div class="product">
+                    <div class="product-image">
+                        <h5>
+                            @product.Name
+                        </h5>
+                        <h5>
+                            <span>&#8358; @product.WragbyPrice</span>
+                        </h5>
+                        <p>
+                            @product.Description
+                        </p>
+                    </div>
+                    <a class="btn" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@product.cspID"><i class="fa fa-shopping-cart"></i> </a>
+                </div>
+
+
+                 
+               
+
+                }
+
+            </div>
+            </div>
+        </div>
+</section>
+   

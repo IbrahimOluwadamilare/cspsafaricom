@@ -1,0 +1,78 @@
+﻿<!-- Left Sidebar Menu -->
+<div class="fixed-sidebar-left">
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+        <li class="navigation-header">
+            <span></span>
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a asp-controller="CustomerDashboard" asp-action="ControlDashboard"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        
+
+        <li>
+            <a data-toggle="collapse" data-target="#profile_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-cart-plus mr-20"></i><span class="right-nav-text">Profile</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="profile_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="CustomerDashboard" asp-action="Index">My Profile</a>
+                    <a asp-controller="Manage" asp-action="Index">Edit Profile</a>
+                   
+
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a asp-controller="Home" asp-action="BundlesPage" target="_blank"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Webstore</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+
+        @*<li>
+            <a asp-controller="CustomerDashboard" asp-action="Orders"><div class="pull-left"><i class="zmdi zmdi-shopping-cart-plus mr-20"></i><span class="right-nav-text">My Orders</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>*@
+        <li>
+            <a data-toggle="collapse" data-target="#order_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-cart-plus mr-20"></i><span class="right-nav-text">My Orders</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="order_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="CustomerDashboard" asp-action="Orders">All Orders</a>
+                    <a asp-controller="CustomerDashboard" asp-action="FulfilledOrders">Fulfilled Orders</a>
+                    @*<a asp-controller="CustomerDashboard" asp-action="Invoice">Generate Invoice</a>*@
+
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a asp-controller="CustomerDashboard" asp-action="Subscriptions"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">Subscriptions</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+
+        </li>
+
+
+
+        <li>
+            <a data-toggle="collapse" data-target="#users_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-cart-plus mr-20"></i><span class="right-nav-text">Registered Users</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="users_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="CustomerDashboard" asp-action="CustomerUsers">All Users</a>
+                    <a asp-controller="CustomerDashboard" asp-action="DeletedCustomerUsers">Deleted Users</a>
+
+
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a asp-controller="CustomerDashboard" asp-action="SupportIndex"><div class="pull-left"><i class="zmdi zmdi-flag mr-20"></i><span class="right-nav-text">Support</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        <li>
+            <a asp-action="CustomerLicenses" asp-controller="CustomerDashboard"><div class="pull-left"><i class="zmdi zmdi-library mr-20"></i><span class="right-nav-text">Licences info</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+      
+
+
+    </ul>
+</div>
+<!-- /Left Sidebar Menu -->

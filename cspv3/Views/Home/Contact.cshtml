@@ -1,0 +1,71 @@
+﻿@model cspv3.Models.ContactSupport
+@{
+    ViewData["Title"] = "Contact";
+    var status = ViewBag.Status as string;
+    Layout = "_Layout";
+}
+<section id="page-title" data-parallax-image="../img/5.jpg">
+    <div class="parallax-container img-loaded" data-velocity="-.090" style="background: url(&quot;/img/5.jpg&quot;) 0px;"></div>
+    <div class="container">
+        <div class="page-title">
+            <h1>Contact</h1>
+
+        </div>
+
+    </div>
+</section>
+<section>
+    <div class="container">
+        @{
+            if (status != null)
+            {
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-dark alert alert-dismissable fade show" role="alert">
+                            <h6> @status </h6> 
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        <div class="row">
+            <div class="col-lg-9">
+                <h3 class="text-uppercase">Get In Touch</h3>
+                <p>Having Issues? You can get in touch with us</p>
+                <div class="m-t-30">
+                    <form  asp-controller="Home" asp-action="Contact" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" placeholder="Name" asp-for="Name" />
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" placeholder="Email" asp-for="Email" />
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" placeholder="Phone" asp-for="Phone" />
+                                <span class="text-danger" asp-validation-for="Phone"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" placeholder="Subject" asp-for="Subject" />
+                                <span class="text-danger" asp-validation-for="Subject"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your message" asp-for="Message" type="text"></textarea>
+                            <span class="text-danger" asp-validation-for="Message"></span>
+                        </div>
+                        <div class="form-group m-form__group">
+                            <button class="btn" type="submit">Send Message</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

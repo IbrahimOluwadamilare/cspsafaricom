@@ -1,0 +1,116 @@
+﻿@model cspv3.Models.CspApiModels.UserModel
+@{
+    ViewBag.Title = "Users";
+    Layout = "_CustomerLayout";
+    var CustomerId = ViewBag.CustomerId as string;
+
+}
+@using Microsoft.AspNetCore.Http;
+@inject UserManager<ApplicationUser> userManager;
+
+
+
+
+    <div class="content-wrapper">
+        <div class="page-header">
+
+
+            <h4 class="page-title"> Create User</h4>
+
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="CustomerDashboard" asp-action="CustomerUsers">Customers List</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create User</li>
+                </ol>
+            </nav>
+
+        </div>
+
+        <div class="col-sm-8">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon m--hide">
+                                        <i class="la la-gear"></i>
+                                    </span>
+                                    <h5 class="m-portlet__head-text">
+                                        User Information
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <!--begin::Form-->
+                        <form class="m-form m-form--fit m-form--label-align-right" method="post" asp-controller="Customerdashboard" asp-action="CreateUser">
+                            <div class="m-portlet__body">
+                                <div class="form-group m-form__group">
+                                    <br />
+                                    <label for="subject">
+                                        Principal Name
+                                    </label>
+                                    <input asp-for="UserPrincipalName" type="text" class="form-control m-input" id="subject">
+                                    @{ var user = await userManager.GetUserAsync(User);
+                                       @( "@" + user.Domain);
+                                        }
+                                    <span asp-validation-for="UserPrincipalName"></span>
+
+                                </div>
+
+
+
+                                <div class="form-group m-form__group">
+                                    <label for="firstname">
+                                        First Name
+                                    </label>
+                                    <input asp-for="FirstName" type="text" class="form-control m-input" id="firstname">
+                                    <span asp-validation-for="FirstName"></span>
+                                </div>
+
+                                <div class="form-group m-form__group">
+                                    <label for="lastname">
+                                        Last Name
+                                    </label>
+                                    <input asp-for="LastName" type="text" class="form-control m-input" id="lastname">
+                                    <span asp-validation-for="LastName"></span>
+                                </div>
+
+                                <div class="form-group m-form__group">
+                                    <label for="displayname">
+                                        Display Name
+                                    </label>
+                                    <input asp-for="DisplayName" type="text" class="form-control m-input" id="displayname">
+                                    <span asp-validation-for="DisplayName"></span>
+                                </div>
+
+
+                                <div class="form-group m-form__group">
+
+                                    <input name="customerid" value="@CustomerId" class="form-control m-input" type="hidden">
+                                    <span asp-validation-for="DisplayName"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions">
+                                    <button type="submit" value="submit" class="btn btn-primary">
+                                        Create User
+                                    </button>
+
+
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 

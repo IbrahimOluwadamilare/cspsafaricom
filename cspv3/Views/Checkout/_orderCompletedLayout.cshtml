@@ -1,0 +1,115 @@
+﻿
+<! DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+
+        <!-- fonts -->
+        <!-- <link href="../../fonts.googleapis.com/css0361.css?family=Questrial|Raleway:700,900" rel="stylesheet"> -->
+        <link href="~/exzo/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/exzo/css/bootstrap.extension.css" rel="stylesheet" type="text/css" />
+        <link href="~/exzo/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="~/exzo/css/swiper.css" rel="stylesheet" type="text/css" />
+        <link href="~/exzo/css/sumoselect.css" rel="stylesheet" type="text/css" />
+        <link href="~/exzo/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        @*
+        <link href="~/special.css" rel="stylesheet" /> *@
+        <!-- <link rel="shortcut icon" href="~/images/w-logo-blue.png" /> -->
+        <title>Microsoft & FirstBank SME Productivity | @ViewData["Title"]</title>
+        <meta name="description" content="This webstore enables customers to purchase Microsoft solutions either standalone or add-ons. You can choose from different product offerings available.">
+
+            <!-- Libraries CSS Files -->
+            @*
+            <link href="~/slider/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">*@
+                <link href="~/slider/lib/animate/animate.min.css" rel="stylesheet">
+                    @*
+                    <link href="~/slider/lib/ionicons/css/ionicons.min.css" rel="stylesheet">*@
+                        <link href="~/slider/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+                            <link href="~/slider/css/style.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <!--[if lte IE 9]>
+
+    <![endif]-->
+        <!-- Add your site or application content here -->
+        <!-- JS here -->
+        <!-- LOADER -->
+        <div id="loader-wrapper"></div>
+        <div id="content-block">
+            @await Html.PartialAsync("_LayoutHeader")
+            <!-- slider-area start -->
+            @RenderBody()
+            <!-- brad area end -->
+            @await Html.PartialAsync("_LayoutFooter")
+        </div>
+        @RenderSection("Scripts", required: false)
+        <span class="AntiForge">@Html.AntiForgeryToken()</span>
+
+        @*
+        <script src="~/exzo/js/jquery-2.2.4.min.js"></script> *@
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.0.0.min.js"></script>
+        <script src="~/exzo/js/swiper.jquery.min.js"></script>
+        <script src="~/slider/lib/jquery/jquery-migrate.min.js"></script>
+
+        <script src="~/exzo/js/global.js"></script>
+
+
+        <script src="~/slider/lib/popper/popper.min.js"></script>
+
+        <script src="~/slider/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/slider/lib/easing/easing.min.js"></script>
+        <script src="~/slider/lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <script src="~/slider/lib/scrollreveal/scrollreveal.min.js"></script>
+
+
+
+        <!-- styled select -->
+        <script src="~/exzo/js/jquery.sumoselect.min.js"></script>
+        <!-- counter -->
+        <script src="~/exzo/js/jquery.classycountdown.js"></script>
+        <script src="~/exzo/js/jquery.knob.js"></script>
+        <script src="~/exzo/js/jquery.throttle.js"></script>
+        <script src="~/slider/js/main.js"></script>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '784799171624485'); // Insert your pixel ID here.
+    fbq('track', 'CompleteRegistration');
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=784799171624485&ev=PageView&noscript=1"
+    />
+        </noscript>
+        <!-- DO NOT MODIFY -->
+        <!-- End Facebook Pixel Code -->
+        <environment include="Development">
+            <!-- <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script> -->
+        </environment>
+        <environment exclude="Development">
+            <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script> -->
+        </environment>
+    </body>
+</html>

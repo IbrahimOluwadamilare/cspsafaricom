@@ -1,0 +1,54 @@
+﻿<!-- Left Sidebar Menu -->
+<div class="fixed-sidebar-left">
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+        <li class="navigation-header">
+            <span></span>
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a asp-controller="Home" asp-action="BundlesPage"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">MarketPlace</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+        <li>
+            <a asp-controller="Staff" asp-action="EditProfile"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Edit Profile</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+       
+        <li>
+            <a data-toggle="collapse" data-target="#product_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Manage Products</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="product_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="Staff" asp-action="ManageProduct">Product Upload</a>
+                    <a asp-controller="Staff" asp-action="ProductPortfolio">Product Porfolio</a>
+                   
+                </li>
+            </ul>
+        </li>
+       
+       
+
+        <li>
+            <a data-toggle="collapse" data-target="#report_dr"><div class="pull-left"><i class="zmdi zmdi-account-box mr-20"></i><span class="right-nav-text">Reports</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="report_dr" class="collapse collapse-level-1">
+                <li>
+                    <a asp-controller="Staff" asp-action="RevenueReport">Revenue</a>
+                    <a asp-controller="Staff" asp-action="CustomerReport">Customer</a>
+                    <a asp-controller="Staff" asp-action="SettlementsReport">Settlements</a>
+                    <a asp-controller="Staff" asp-action="SalesReport">Sales</a>
+                    <a asp-controller="Staff" asp-action="OrdersReport">Orders</a>
+                    <a asp-controller="Staff" asp-action="RenewalsReport">Renewals</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a asp-controller="Staff" asp-action="CreateSupportTicket"><div class="pull-left"><i class="zmdi zmdi-comment-alert mr-20"></i><span class="right-nav-text">Support</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+
+        </li>
+
+
+
+    </ul>
+</div>
+<!-- /Left Sidebar Menu -->

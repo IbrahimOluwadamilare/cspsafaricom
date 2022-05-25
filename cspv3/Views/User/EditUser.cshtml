@@ -1,0 +1,59 @@
+﻿@model cspv3.ViewModels.EditUserViewModel
+@{
+    ViewData["Title"] = "Edit Registered User Roles";
+    Layout = "_AdminLayout";
+
+}
+
+<div class="page-header">
+    <h3 class="page-title">
+        Edit User Role
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="User">Users</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Roles</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default card-view">
+
+            <div class="content">
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form asp-action="EditUser">
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" asp-for="Email" />
+
+                                    <div>
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input class="form-control" value="@Model.Email" disabled />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="ApplicationRoleId" class="control-label"></label>
+                                        <div>
+                                            <select asp-for="ApplicationRoleId" asp-items="ViewBag.ApplicationRoles" class="form-control"> </select>
+                                            <br /><button class="btn btn-primary" type="submit">Save</button>
+                                        </div>
+                                    </div>
+                             
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+            

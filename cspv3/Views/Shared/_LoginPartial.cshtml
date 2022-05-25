@@ -1,0 +1,27 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var user = await UserManager.GetUserAsync(User);
+
+
+    if (User.IsInRole("User"))
+    {
+        <li><a asp-controller="CustomerDashboard" asp-action="ControlDashboard"><b>Welcome @user.LastName </b></a></li>
+    }
+    if (User.IsInRole("Admin"))
+    {
+        <li><a asp-controller="AdministratorDashboard" asp-action="Index"><b>Welcome @user.LastName </b></a></li>
+    }
+  
+
+}
+else
+{
+
+
+    <li><a asp-controller="Account" asp-action="Login">LOGIN &nbsp;|</a></li>
+    <li><a asp-controller="Account" asp-action="Register">REGISTER</a></li>
+}

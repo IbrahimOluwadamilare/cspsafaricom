@@ -1,0 +1,53 @@
+﻿@model cspv3.Models.InvoiceCustomerModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Invoice</title>
+    <link rel="stylesheet" href="@Url.Content("~/css/Invoice.css")" />
+</head>
+<body>
+    <div class="invoice-title">
+        Invoice @Model.CompanyAddress
+    </div>
+
+    <div class="invoice-head clearfix">
+        <div class="invoice-to">
+            <strong>Company Address</strong><br />
+            @Model.CompanyAddress
+        </div>
+        <div class="invoice-details">
+            Invoice no: @Model.PromoCode<br />
+            Date: <br />
+            Due date:
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Unit price</th>
+            <th>Amount</th>
+            <th>Net</th>
+            <th>Total</th>
+        </tr>
+
+        <tr>
+            <td>@Model.FirstName</td>
+            <td class="numeric-cell">@Model.CartTotal.ToString()</td>
+            <td class="numeric-cell">@Model.CartTotal.ToString()</td>
+        </tr>
+        }
+
+    </table>
+    <div>
+        <strong>Total:</strong>
+        <strong>@Model.Notes</strong>
+    </div>
+</body>
+</html>

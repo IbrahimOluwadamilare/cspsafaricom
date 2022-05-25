@@ -1,0 +1,126 @@
+﻿
+@model cspv3.Models.ProductOffering
+@{
+    Layout = null;
+}
+<div class="ajax-quick-view">
+    <div class="quick-view-content">
+        <div class="product">
+            <div class="row">
+
+
+
+                <div class="col-lg-5">
+                    <div class="product-image">
+                        <div class="" data-items="1">
+                            @if (@Model.Name == "Wragby O365 Scarlet Business Essentials Bundle")
+                            {
+                                <img alt="Shop product image!" src="~/img/Business Essentials.jpg">
+                            }
+                            @if (@Model.Name == "Wragby O365 Scarlet Business Premium Bundle")
+                            {
+                                <img alt="Shop product image!" src="~/img/Business Premium.jpg">
+                            }
+                            @if (@Model.Name == "Wragby O365 Scarlet Business Bundle")
+                            {
+                                <img alt="Shop product image!" src="~/img/Business.jpg">
+                            }
+                           
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="product-description">
+                        <div class="product-category"><strong>Microsoft Office 365</strong></div>
+                        <div class="product-title">
+                            <h3><a href="#" style="color:#4b5">@Model.Name</a></h3>
+                        </div>
+                        <div class="product-price">
+                            <ins>₦@Model.WragbyPrice</ins>
+                        </div>
+                        
+                        <div class="product-reviews">
+                            <a href="#">per User/Month</a>
+                        </div>
+                        <div class="seperator m-b-10"></div>
+                        <p>Exchange email, instant messaging, SharePoint and Office Online, for fewer than 300 users.</p>
+                        <div class="product-meta">
+
+                            <p>
+                                Tags: <a rel="tag" href="#" style="color:#4b5">Exchange</a>, <a href="#" rel="tag" style="color:#4b5;">SharePoint</a>
+                                , <a href="#" rel="tag" style="color:#4b5">Teams</a>, <a href="#" rel="tag" style="color:#4b5">OneDrive</a>
+                            </p>
+                        </div>
+                        <div class="seperator m-t-20 m-b-10"></div>
+                    </div>
+                    <div class="row">
+
+
+                    </div>
+
+                    <div class="m-t-20">
+                        <a class="btn btn-lg" type="button" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.cspID"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        function addQuantity() {
+
+
+            var quantity = document.getElementById("quantity").value;
+            var newquantity = parseInt(quantity) + 1;
+            document.getElementById("quantity").value = newquantity;
+
+
+            var unitprice = (document.getElementById("unitprice").innerHTML).replace("₦", "");
+            var total = unitprice * newquantity;
+            (document.getElementById("total").innerHTML) = "₦" + total.toFixed(2);
+
+            (document.getElementById("cartsubtotal").innerHTML) = "₦" + total.toFixed(2);
+
+            var coupon = (document.getElementById("coupon").innerHTML).replace("%", "");
+            var couponpercent = parseInt(coupon) / 100;
+            var couponamount = couponpercent * total;
+            var carttotal = total - couponamount;
+            (document.getElementById("carttotal").innerHTML) = "₦" + carttotal.toFixed(2);
+
+
+        }
+        function removeQuantity() {
+
+            var quantity = document.getElementById("quantity").value;
+            var newquantity = parseInt(quantity) - 1;
+            if (newquantity < 1) {
+                document.getElementbyId("quantity").value = 1;
+            }
+            document.getElementById("quantity").value = newquantity;
+            var unitprice = (document.getElementById("unitprice").innerHTML).replace("₦", "");
+            var total = unitprice * newquantity;
+            (document.getElementById("total").innerHTML) = "₦" + total.toFixed(2);
+
+            (document.getElementById("cartsubtotal").innerHTML) = "₦" + total.toFixed(2);
+
+            var coupon = (document.getElementById("coupon").innerHTML).replace("%", "");
+            var couponpercent = parseInt(coupon) / 100;
+            var couponamount = couponpercent * total;
+            var carttotal = total - couponamount;
+            (document.getElementById("carttotal").innerHTML) = "₦" + carttotal.toFixed(2);
+
+        }
+
+    </script>
+}
+
+
+
+

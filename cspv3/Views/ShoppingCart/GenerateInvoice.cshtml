@@ -1,0 +1,118 @@
+﻿@model cspv3.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "_Layout";
+}
+@inject SignInManager<ApplicationUser> SignInManager
+
+    <section id="page-title" class="help">
+        <div class="container">
+            <div class="page-title">
+                <h1 class="custom-color">Invoice Page</h1>
+
+            </div>
+
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <h3 class="text-right my-5">Invoice&nbsp</h3>
+                                <hr>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-between">
+                                <div class="col-lg-9 pl-0">
+                                    <p class="mt-5 mb-2"><b>Wragby  Admin</b></p>
+                                    <p>No 21A, Olubunmi Rotimi Street,<br>Lekki Phase 1, Lagos, Nigeria.</p>
+                                    <p><b>Invoice Date :</b>  @DateTime.Now.ToLongDateString()</p>
+                                    <p><b>Due Date :</b> @DateTime.Now.AddDays(2).ToLongDateString()</p>
+                                </div>
+                                @{
+                                    if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <div class="col-lg-3 pr-0">
+                                            <p class="mt-5 mb-2 text-right"><b>Invoice to</b></p>
+                                            <p class="text-right">  @Model.User.FirstName&ensp;@Model.User.LastName <br>@Model.User.CompanyName <br> @Model.User.CompanyAddress.</p>
+                                        </div>
+                                    }
+
+                                }
+
+                            </div>
+                           
+                            <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                                <div class="table-responsive w-100">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="bg-dark text-white">
+
+                                                <th>Item</th>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Unit cost</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.Products.Count(); i++)
+                                            {
+                                                <tr>
+
+                                                    <td> @Model.Products[i].Name</td>
+                                                    <td> @Model.Products[i].Description </td>
+
+                                                    <td>@Model.CartItems[i].Count </td>
+                                                    <td>&#8358; @String.Format(Model.Products[i].WragbyPrice.ToString(), "N") </td>
+
+                                                    <td>&#8358; @(Model.Products[i].WragbyPrice * Model.CartItems[i].Count)</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="container-fluid mt-5 w-100">
+                                <p class="text-right mb-2">Sub - Total amount: &#8358;@Model.CartTotal</p>
+                                <p class="text-right">vat (5%) : &#8358; @string.Format("{0:C}", ((Convert.ToInt64(@Model.CartTotal)) * 0.05)).Remove(0, 1)</p>
+                                <h4 class="text-right mb-5">
+                                    Total :  &#8358;@{ var m = (Convert.ToInt64(Model.CartTotal));
+                                        var n = ((Convert.ToInt64(Model.CartTotal)) * 0.05); var total = m + n; } @string.Format("{0:C}", @total).Remove(0, 1)
+                                    </h4>
+                                    <hr>
+                                </div>
+                                <div class="container-fluid w-100">
+
+                                    <a class="btn btn-primary float-right mt-4 ml-2" asp-controller="ShoppingCart" asp-action="Invoice" target="_blank"><i class="fa fa-print mr-1"></i>Print</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <!-- content-wrapper ends -->
+            <!-- partial:../../partials/_footer.html -->
+
+            <div>
+
+            </div>
+
+
+            <script type="text/javascript">
+                function forprint() {
+                    if (!window.print) {
+                        return
+                    }
+                    var printWindow = window;
+                    setTimeout(printWindow.print, 500);
+
+
+                }
+            </script>

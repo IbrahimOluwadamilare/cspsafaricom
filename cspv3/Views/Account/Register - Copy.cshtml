@@ -1,0 +1,150 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+    <section id="page-title" data-parallax-image="../img/5.jpg">
+        <div class="parallax-container img-loaded" data-velocity="-.090" style="background: url(&quot;/img/5.jpg&quot;) 0px;"></div>
+        <div class="container">
+            <div class="page-title">
+                <h1>Register</h1>
+                <span>Register</span>
+            </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 center no-padding">
+                    <form class="form-transparent-grey">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>Register New Account</h3>
+                                <p>* All Fields are MANDATORY</p>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">First Name</label>
+                                <input class="form-control" type="text" placeholder="First Name" data-val="true" data-val-required="The First Name field is required." id="FirstName" name="FirstName" value="">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Last Name</label>
+                                <input class="form-control" type="text" placeholder="Last Name" data-val="true" data-val-required="The Last Name field is required." id="LastName" name="LastName" value="">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Email</label>
+                                <input class="form-control" type="text" placeholder="Email" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Email" name="Email" value="">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Password</label>
+                                <input class="form-control" required="" type="password" placeholder="Password " autocomplete="off" data-val="true" data-val-length="The Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars) must be at least 8 and at max 100 characters long." data-val-length-max="100" data-val-length-min="8" data-val-required="The Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars) field is required." id="Password" name="Password" aria-required="true">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Confirm Password</label>
+                                <input class="form-control" required="" type="password" placeholder="Confirm Password" autocomplete="off" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" aria-required="true">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Username</label>
+                                <input class="form-control" type="text" placeholder="Username" data-val="true" data-val-required="The Username field is required." id="Username" name="Username" value="">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="sr-only">Address</label>
+                                <input class="form-control" type="text" placeholder=" Address" data-val="true" data-val-required="The User Address field is required." id="UserAddress" name="UserAddress" value="">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="UserAddress" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-lg-12 form-group">
+                                <label class="sr-only">Country</label>
+                                <select id="country" class="form-control" required data-val="true" data-val-required="The Country field is required." name="Country"><option value="">-- Country --</option></select>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="Country" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">State / County</label>
+                                <select id="region" class="form-control" required="" data-val="true" data-val-required="The State field is required." name="State" aria-required="true"><option value="">-- State --</option></select>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="State" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">City</label>
+                                <select id="city" class="form-control" required="" data-val="true" data-val-required="The City field is required." name="City" aria-required="true"><option value="">-- City --</option></select>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="City" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Postcode / Zip</label>
+                                <input class="form-control" required="" type="text" placeholder="Postal Code ( 123456 )" data-val="true" data-val-regex="Please Enter Valid Postal Code." data-val-regex-pattern="^\d{6}(-\d{4})?$" data-val-required="The Postal Code field is required." id="PostCode" name="PostCode" value="" aria-required="true">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="PostCode" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label class="sr-only">Company Name</label>
+                                <input class="form-control" type="text" placeholder="Company Name" required="" id="CompanyName" name="CompanyName" value="" aria-required="true">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="CompanyName" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="sr-only">Company Address</label>
+                                <input class="form-control" type="text" placeholder="Company Address" required="" id="CompanyAddress" name="CompanyAddress" value="" aria-required="true">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="CompanyAddress" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-check">
+                                <label>
+                                    <input type="checkbox"><small class="m-l-10"> TERMS AND CONDITIONS AGREEMENT</small>
+                                </label>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <button class="btn" type="button">Register New Account </button>
+                                <button type="button" class="btn btn-danger m-l-10">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Register</button>
+        </form>
+    @*</div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}*@

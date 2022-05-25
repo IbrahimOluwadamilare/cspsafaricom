@@ -1,0 +1,72 @@
+﻿@model cspv3.Models.BundleModels.Bundle
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_AdminLayout";
+}
+
+
+
+
+<!-- Row -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a>Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Bundles</li>
+    </ol>
+</nav>
+<br /><br />
+<h4>Manage Bundles </h4>
+
+<br /><br />            
+<a class="btn btn-primary" asp-action="CreateBundle">Create Bundle</a>
+<br /><br />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+
+                    <div class="panel-body">
+    
+                        <div class="table-wrap">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-hover display  pb-30">
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.BundleName)
+                                            </th>
+
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

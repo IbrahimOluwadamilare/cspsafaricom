@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_AdminLayout";
+}
+
+
+
+<!-- Row -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Products</li>
+    </ol>
+</nav>
+<br /><br />
+<h4>Manage Products </h4>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Product Upload</h6>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+
+            @*<div class=" row">
+                <div class="col-md-6">*@
+            <div @*class="input-group mb-3"*@>
+                <div @*class="custom-file"*@>
+                    <p>Upload Licensed Products</p>
+                    <p>Pricing Sheet</p>
+                    <input type="file" @*style="float:right"*@ @*class="custom-file-input" id="inputGroupFile02"*@>
+                    @*<label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>*@
+                </div>
+                <div @*class="input-group-append"*@>
+                    <br />
+                    <span @*class="input-group-text" id="inputGroupFileAddon02"*@><button type="button" class="btn btn-success btn-anim"><i class="icon-rocket"></i><span class="btn-text">Upload</span></button></span>
+                    <br /> <br />
+                </div>
+            </div>
+
+
+
+
+
+
+            @*</div>
+                </div>*@
+
+
+
+
+
+
+            @*<div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                    <div class="form-wrap">
+                      <form>
+
+
+
+
+
+
+
+                        <div class="form-group mb-0">
+                          <button type="button" class="btn btn-success btn-anim"><i class="icon-rocket"></i><span class="btn-text">submit</span></button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>*@
+        </div>
+    </div>
+</div>
